@@ -19,4 +19,10 @@ canvas {
 	font-weight: 500;
 	background-color: black;
 	padding: 10px;
+	width: 690px;
+}
+
+.rotate{
+    -webkit-transform: rotate(180deg);
+	-webkit-transform: scaleX(-1);
 }
