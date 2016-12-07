@@ -1,8 +1,8 @@
 
-		// Create the canvas tag with javascript
+		// // Create the canvas tag with javascript
 		var canvas = document.createElement('canvas');
 
-		// create a context for js to play with (Methods, properties, ~~~)
+		// // create a context for js to play with (Methods, properties, ~~~)
 		var context = canvas.getContext('2d')
 
 		canvas.width = 512;
@@ -41,39 +41,13 @@
 			delete keysDown[event.keyCode];
 		});
 
-		// // we need a way to tell if the user has pushed an arrow key
-		// addEventListener('keydown', function(event){
-		// 	// we know a key was pressed, but what?
-		// 	// what key did they press?
-		// 	if(event.key == "ArrowDown"){
-		// 		console.log('user pressed down arrow')
-		// 		heroLocation.y += 10;
-		// 	}
-		// 	if(event.key == "ArrowUp"){
-		// 		console.log('user pressed up arrow')
-		// 		heroLocation.y -= 10;
-		// 	}
-		// 	if(event.key == "ArrowLeft"){
-		// 		console.log('user pressed left arrow')
-		// 		heroLocation.x -= 10;
-		// 	}
-		// 	if(event.key == "ArrowRight"){
-		// 		console.log('user pressed right arrow')
-		// 		heroLocation.x += 10;
-		// 	}
-		// });
 
 
+		var sp = 1	 //hero speed modifier
 
 
-
-
-
-		var sp = 1
-
-		// this is where we will update the hero based on whats true in keysDown
 function update(){
-	 //hero speed modifier
+
 	if((39 in keysDown)&&(heroLocation.x < 451)){heroLocation.x += 3 * sp;} 
 	if((37 in keysDown)&&(heroLocation.x > 32)){heroLocation.x -= 3 * sp;}
 	if((38 in keysDown)&&(heroLocation.y > 32)){heroLocation.y -= 3 * sp;}
@@ -98,6 +72,7 @@ function update(){
 
 			requestAnimationFrame(draw);	
 		}
+
 draw()
 
 
