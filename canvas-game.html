@@ -85,24 +85,24 @@
 	var gameOver = false;
 	var directionX = 2; 	var directionY = 2
 	var directionX2 = 2;
-
+	var sp = .5 	
 //the game
 function update(){
-	if(score<=0){score = 0}
-	var sp = 2 		// hero speed modifier
+	
+	// extra speed
 	if(score>highScore){highScore=score};
 
-	monsterLocation.x += 1;		monsterLocation.y -= .5
-	monster2Location.x += 1.5;	monster2Location.y -= .5
-	monster3Location.x += 2;	monster3Location.y -= 2
-	monster4Location.x += 2.5;	monster4Location.y -= .5
-	monster5Location.x -= 1.5;	monster5Location.y -= .5
-	monster6Location.x -= 2;	monster6Location.y -= -1
-	monster7Location.x -= 3.5;	monster7Location.y -= -.5
-	monster9Location.x -= 3;	monster9Location.y -= .2
+	monsterLocation.x += (1*sp);		monsterLocation.y -= (.5*sp)
+	monster2Location.x += (1.5*sp);	monster2Location.y -= (.5*sp)
+	monster3Location.x += 2*sp;	monster3Location.y -= 2*sp
+	monster4Location.x += 2.5*sp;	monster4Location.y -= .5*sp
+	monster5Location.x -= 1.5*sp;	monster5Location.y -= .5*sp
+	monster6Location.x -= 2*sp;	monster6Location.y -= -1*sp
+	monster7Location.x -= 3.5*sp;	monster7Location.y -= -.5*sp
+	monster9Location.x -= 3*sp;	monster9Location.y -= .2*sp
 
-	monster10Location.x -= (.3*directionX);	monster10Location.y -= (.3*directionY)
-	monster11Location.x -= (1*directionX2);
+	monster10Location.x -= (.3*directionX*sp);	monster10Location.y -= (.3*directionY*sp)
+	monster11Location.x -= (1*directionX2*sp);
 
 	deadfishLocation.y += 3;	
 	deadfish2Location.y += 3
@@ -113,10 +113,10 @@ function update(){
 	deadfish7Location.y += 3;
 
 	//bruce
-	if((39 in keysDown)&&(heroLocation.x < 601)){heroLocation.x += 3 * sp;} 
-	if((37 in keysDown)&&(heroLocation.x > 22)){heroLocation.x -= 3 * sp;}
-	if((38 in keysDown)&&(heroLocation.y > 5)){heroLocation.y -= 3 * sp;}
-	if((40 in keysDown)&&(heroLocation.y < 403)){heroLocation.y += 3 * sp;}
+	if((39 in keysDown)&&(heroLocation.x < 601)){heroLocation.x += 6;} 
+	if((37 in keysDown)&&(heroLocation.x > 22)){heroLocation.x -= 6;}
+	if((38 in keysDown)&&(heroLocation.y > 5)){heroLocation.y -= 6;}
+	if((40 in keysDown)&&(heroLocation.y < 403)){heroLocation.y += 6;}
 
 	//dory1	- monster1
 	if((32 in keysDown)&&(heroLocation.x <= monsterLocation.x + 45) 
@@ -130,7 +130,8 @@ function update(){
 			}
 	else if(monsterLocation.x >= 700 || monsterLocation.y <= 1){
 		monsterLocation = {x: Math.floor(Math.random()*300),
-			 y: Math.floor(Math.random()*200) + 300}; score -= 10}
+			 y: Math.floor(Math.random()*200) + 300};
+			 if(score>0){score -= 10};}
 
 	//nemo1	- monster2
 	if((32 in keysDown)&&(heroLocation.x <= monster2Location.x + 45) 
@@ -144,7 +145,8 @@ function update(){
 			}
 	else if(monster2Location.x >= 700 || monster2Location.y <= 1){
 		monster2Location = {x: Math.floor(Math.random()*300),
-			 y: Math.floor(Math.random()*200) + 200}; score -= 10}
+			 y: Math.floor(Math.random()*200) + 200}
+			 ;if(score>0){score -= 10};}
 
 	//dory2	- monster3
 	if((32 in keysDown)&&(heroLocation.x <= monster3Location.x + 45) 
@@ -158,7 +160,8 @@ function update(){
 			}
 	else if(monster3Location.x >= 700 || monster3Location.y <= 1){
 		monster3Location = {x: Math.floor(Math.random()*300),
-			 y: Math.floor(Math.random()*200) + 300}; score -= 10}
+			 y: Math.floor(Math.random()*200) + 300}
+			 ;if(score>0){score -= 10};}
 
 	//nemo2	- monster4
 	if((32 in keysDown)&&(heroLocation.x <= monster4Location.x + 45) 
@@ -172,7 +175,8 @@ function update(){
 			}
 	else if(monster4Location.x >= 700 || monster4Location.y <= 1){
 		monster4Location = {x: Math.floor(Math.random()*300),
-			 y: Math.floor(Math.random()*200) + 200}; score -= 10}
+			 y: Math.floor(Math.random()*200) + 200}
+			 ;if(score>0){score -= 10};}
 
 	//dory3	- monster5
 	if((32 in keysDown)&&(heroLocation.x <= monster5Location.x + 45) 
@@ -186,7 +190,8 @@ function update(){
 			}
 	else if(monster5Location.x <= 1 || monster5Location.y <= 1){
 		monster5Location = {x: Math.floor(Math.random()*310+400),
-			 y: Math.floor(Math.random()*200) + 200}; score -= 10}
+			 y: Math.floor(Math.random()*200) + 200}
+			 ;if(score>0){score -= 10};}
 
 	//nemo3	- monster6
 	if((32 in keysDown)&&(heroLocation.x <= monster6Location.x + 45) 
@@ -200,7 +205,8 @@ function update(){
 			}
 	else if(monster6Location.x <= 1|| monster6Location.y >= 480){
 		monster6Location = {x: Math.floor(Math.random()*300+400),
-			 y: Math.floor(Math.random()*200)}; score -= 10}
+			 y: Math.floor(Math.random()*200)}
+			 ;if(score>0){score -= 10};}
 
 	//nemo4	- monster7
 	if((32 in keysDown)&&(heroLocation.x <= monster7Location.x + 45) 
@@ -214,7 +220,8 @@ function update(){
 			}
 	else if(monster7Location.x <= 1 || monster7Location.y >= 480){
 		monster7Location = {x: Math.floor(Math.random()*200+500),
-			 y: Math.floor(Math.random()*150)}; score -= 10}
+			 y: Math.floor(Math.random()*150)}
+			;if(score>0){score -= 10};}
 
 
 	//puff - monster 9
@@ -272,8 +279,16 @@ function update(){
 		score = 0;
 		// document.canvas.className="red"
 		gameOver = false;
+		sp = .5
 		// add more stuff when game over
 	}
+	if(score>10000){sp=4
+	}else if(score > 5000){sp=2.2
+	}else if(score > 3000){backgroundImage.src = "background2.jpg"; sp = 1.7
+	}else if(score > 1500){sp = 1.2;
+	}else{backgroundImage.src = "background.png";
+	}
+
 }
 
 function draw(){
@@ -314,7 +329,19 @@ draw()
 press space-bar to eat nemo or dory. <br>Game over if u eat anything else<br>
 <br>
 100 points for catching nemo or dory;<br>
--10 points when they run away</div>
+-10 points when they run away
+<br><br>
+level 1 at 0pts
+<br>
+level 2 at 1500pts
+<br>
+level 3 at 3000pts
+<br>
+level 4 at 5000pts
+<br>
+level 5 at 10000pts
+</div>
+
 
 </body>
 </html>
