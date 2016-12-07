@@ -1,4 +1,23 @@
 canvas {
 	border: 5px solid black;
+	float: left;
 }
 
+.red{
+	border: 5px dotted red;
+}
+
+.black{
+	border: 5px solid black;
+}
+
+.description {
+	float: left;
+	margin-left: 10px;
+}
+
+#score {
+	position: fixed;
+	margin-top: 15px;
+	margin-left: 15px;
+}
