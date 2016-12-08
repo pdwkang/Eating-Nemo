@@ -10,6 +10,7 @@ function startGame(){
 	gameEnd = Date.now() + 30000;
 	timerInterval = setInterval(updateTimer, 1000)
 }
+
 function updateTimer(){
 	var newNow = Date.now();
 	timeDifference = (gameEnd - newNow) / 1000;
@@ -19,10 +20,10 @@ function updateTimer(){
 	document.getElementById('timer').innerHTML = "BOSS LEVEL IN " + 
 	Math.round(timeDifference) + " SECONDS";
 	};
-	if(bossLevel){document.getElementById('timer').innerHTML = playerName +"!! " + "KILL THE BOSS!!"}
+	if(bossLevel){document.getElementById('timer').innerHTML = playerName +" !! " + "KILL THE BOSS !!"}
 }
 function newPlayer(){
-	var playerNameDiv = document.getElementById("player-name");
+	playerNameDiv = document.getElementById("player-name");
 	playerName = playerNameDiv.value;
 	playerArray.push(new Player(playerName));
 }
@@ -126,7 +127,7 @@ function Player(name){   //player constructor
 	var directionX2 = 2;
 	var sp = .5 	
 	var hsp = 1
-	var playerName = "Master";
+	var playerName = "You didn't name your shark";
 	var gameOn = false;
 	var bossLevel = false;
 	var timeDifference
@@ -389,16 +390,16 @@ function update(){
 			 y: Math.floor(Math.random()*300) + 280}
 			 // ;if(score>0){score -= 10};
 			}
-
-	if(!gameOn){
-		score = 0;
-		sp = .5
-		// add more stuff when game over
-	}
-	if(score>10000){sp=4; level=5
-	}else if(score > 5000){sp=2.2; level=4
-	}else if(score > 3000){sp = 1.7; level=3
-	}else if(score > 1500){sp = 1.2; level=2
+	sp =.5
+	// if(!gameOn){
+	// 	score = 0;
+	// 	sp = .5
+	// 	// add more stuff when game over
+	// }
+	if(score>20000){sp=4; level=5
+	}else if(score > 10000){sp=2.2; level=4
+	}else if(score > 7000){sp = 1.7; level=3
+	}else if(score > 3000){sp = 1.2; level=2
 	}else{backgroundImage.src = "background.png"; level=1
 	};
 	// hero.src="shark.png";
@@ -457,7 +458,7 @@ function draw(){
 	context.drawImage(monster10, monster10Location.x, monster10Location.y);
 	context.drawImage(monster11, monster11Location.x, monster11Location.y);
 	context.drawImage(monster12, monster12Location.x, monster12Location.y);
- 			// deadfish
+ 	// deadfish
 	context.drawImage(deadfish, deadfishLocation.x, deadfishLocation.y);
 	context.drawImage(deadfish, deadfish2Location.x, deadfish2Location.y);
 	context.drawImage(deadfish, deadfish3Location.x, deadfish3Location.y);
