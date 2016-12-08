@@ -1,7 +1,18 @@
-
-// function Monster(src, location.x, location.y,){
-// 	this.Image.src=src
-// }
+//random variables
+	var level = 1
+	var score = 0
+	var highScore = 0;
+	var gameOver = false;
+	var directionX = 2; 	 //bounce off walls
+	var directionY = 2
+	var directionX2 = 2;
+	var sp = .5 	
+	var hsp = 1
+	var playerName = "You didn't name your shark";
+	var gameOn = false;
+	var bossLevel = false;
+	var timeDifference
+	var playerArray = [];
 
 //start game and timer and save player name
 function startGame(){
@@ -27,7 +38,7 @@ function newPlayer(){
 	playerName = playerNameDiv.value;
 	playerArray.push(new Player(playerName));
 }
-var playerArray = [];
+
 function Player(name){   //player constructor
 	this.name = name;
 	this.highscore = 0;
@@ -118,21 +129,7 @@ function Player(name){   //player constructor
 	var deadfish12Location = {x: 0, y:700}
 
 
-//random variables
-	var level = 1
-	var score = 0
-	var highScore = 0;
-	var gameOver = false;
-	var directionX = 2; 	var directionY = 2
-	var directionX2 = 2;
-	var sp = .5 	
-	var hsp = 1
-	var playerName = "You didn't name your shark";
-	var gameOn = false;
-	var bossLevel = false;
-	var timeDifference
-
-//shell border	
+//shell border for boss level	
 	var shell = new Image();		shell.src="shell.png"
 	var shellLocation ={x:300, y:0}
 	var shell2Location ={x:300, y:40}
@@ -157,6 +154,7 @@ function update(){
 	// extra speed
 	if(score>highScore){highScore=score};
 
+// monster and deadfish location
 	monsterLocation.x += (1*sp);		monsterLocation.y -= (.5*sp)
 	monster2Location.x += (1.5*sp);		monster2Location.y -= (.5*sp)
 	monster3Location.x += 2*sp;			monster3Location.y -= 2*sp
@@ -166,10 +164,10 @@ function update(){
 	monster7Location.x -= 3.5*sp;		monster7Location.y -= -.5*sp
 	monster8Location.x += (1*sp);		
 	monster9Location.x -= 3*sp;			monster9Location.y -= .2*sp
-	monster10Location.x -= (.3*directionX*sp);	monster10Location.y -= (.3*directionY*sp)
+	monster10Location.x -= (.3*directionX*sp);	
+	monster10Location.y -= (.3*directionY*sp)
 	monster11Location.x -= (4*directionX2*sp);
 	monster12Location.x -= .5*sp;		monster12Location.y -= 3*sp;
-
 	deadfishLocation.y += 3;	
 	deadfish2Location.y += 3
 	deadfish3Location.y += 3;	
@@ -191,16 +189,12 @@ function update(){
 	}
 	
 	//bruce
-	if((!bossLevel)&&(39 in keysDown)&&(heroLocation.x < 601)){heroLocation.x += (6*hsp);
-	}else if((bossLevel)&&(39 in keysDown)&&(heroLocation.x < 200)){
-		heroLocation.x += (6*hsp);
-	} //right
+	if((!bossLevel)&&(39 in keysDown)&&(heroLocation.x < 601)){heroLocation.x += (6*hsp);  //right
+		}else if((bossLevel)&&(39 in keysDown)&&(heroLocation.x < 200)){heroLocation.x += (6*hsp);} 
 	if((37 in keysDown)&&(heroLocation.x > 5)){heroLocation.x -= (6*hsp);}    //left
 	if((38 in keysDown)&&(heroLocation.y > 5)){heroLocation.y -= (6*hsp);}     //up
 	if((40 in keysDown)&&(heroLocation.y < 403)){heroLocation.y += (6*hsp);}   //down
 	// bossLevel
-	
-   //right
 
 	//dory1	- monster1
 	if((69 in keysDown)&&(heroLocation.x <= monsterLocation.x + 45) 
@@ -211,12 +205,12 @@ function update(){
 		monsterLocation = {x: Math.floor(Math.random()*300),
 			 y: Math.floor(Math.random()*200) + 300};
 			 score += 100
-			}
+	}
 	else if(monsterLocation.x >= 700 || monsterLocation.y <= 1){
 		monsterLocation = {x: Math.floor(Math.random()*300),
 			 y: Math.floor(Math.random()*200) + 300};
 			 // if(score>0){score -= 10};
-			}
+	}
 
 	//nemo1	- monster2
 	if((69 in keysDown)&&(heroLocation.x <= monster2Location.x + 45) 
@@ -227,12 +221,12 @@ function update(){
 		monster2Location = {x: Math.floor(Math.random()*300),
 			 y: Math.floor(Math.random()*200) + 200};
 			 score += 100
-			}
+	}
 	else if(monster2Location.x >= 700 || monster2Location.y <= 1){
 		monster2Location = {x: Math.floor(Math.random()*300),
 			 y: Math.floor(Math.random()*200) + 200}
 			 // ;if(score>0){score -= 10};
-			}
+	}
 
 	//dory2	- monster3
 	if((69 in keysDown)&&(heroLocation.x <= monster3Location.x + 45) 
@@ -243,12 +237,12 @@ function update(){
 		monster3Location = {x: Math.floor(Math.random()*300),
 			 y: Math.floor(Math.random()*200) + 300};
 			 score += 100
-			}
+	}
 	else if(monster3Location.x >= 700 || monster3Location.y <= 1){
 		monster3Location = {x: Math.floor(Math.random()*300),
 			 y: Math.floor(Math.random()*200) + 300}
 			 // ;if(score>0){score -= 10};
-			}
+	}
 
 	//nemo2	- monster4
 	if((69 in keysDown)&&(heroLocation.x <= monster4Location.x + 45) 
@@ -259,12 +253,12 @@ function update(){
 		monster4Location = {x: Math.floor(Math.random()*300),
 			 y: Math.floor(Math.random()*200) + 200};
 			 score += 100
-			}
+	}
 	else if(monster4Location.x >= 700 || monster4Location.y <= 1){
 		monster4Location = {x: Math.floor(Math.random()*300),
 			 y: Math.floor(Math.random()*200) + 200}
 			 // ;if(score>0){score -= 10};
-			}
+	}
 
 	//dory3	- monster5
 	if((69 in keysDown)&&(heroLocation.x <= monster5Location.x + 45) 
@@ -275,12 +269,12 @@ function update(){
 		monster5Location = {x: Math.floor(Math.random()*310+400),
 			 y: Math.floor(Math.random()*200) + 200};
 			 score += 100
-			}
+	}
 	else if(monster5Location.x <= 1 || monster5Location.y <= 1){
 		monster5Location = {x: Math.floor(Math.random()*310+400),
 			 y: Math.floor(Math.random()*200) + 200}
 			 // ;if(score>0){score -= 10};
-			}
+	}
 
 	//nemo3	- monster6
 	if((69 in keysDown)&&(heroLocation.x <= monster6Location.x + 45) 
@@ -291,12 +285,12 @@ function update(){
 		monster6Location = {x: Math.floor(Math.random()*300+400),
 			 y: Math.floor(Math.random()*200)};
 			 score += 100
-			}
+	}
 	else if(monster6Location.x <= 1|| monster6Location.y >= 480){
 		monster6Location = {x: Math.floor(Math.random()*300+400),
 			 y: Math.floor(Math.random()*200)}
 			 // ;if(score>0){score -= 10};
-			}
+	}
 
 	//nemo4	- monster7
 	if((69 in keysDown)&&(heroLocation.x <= monster7Location.x + 45) 
@@ -307,12 +301,12 @@ function update(){
 		monster7Location = {x: Math.floor(Math.random()*200+500),
 			 y: Math.floor(Math.random()*150)};
 			 score += 100
-			}
+	}
 	else if(monster7Location.x <= 1 || monster7Location.y >= 480){
 		monster7Location = {x: Math.floor(Math.random()*200+500),
 			 y: Math.floor(Math.random()*150)}
 			// ;if(score>0){score -= 10};
-		}
+	}
 
 	//stripe1 - monster8
 	if((69 in keysDown)&&(heroLocation.x <= monster8Location.x + 45) 
@@ -323,12 +317,12 @@ function update(){
 		monster8Location = {x: Math.floor(Math.random()*250),
 			 y: Math.floor(Math.random()*200) + 210};
 			 score += 100
-			}
+	}
 	else if(monster8Location.x >= 700 || monster8Location.y <= 1){
 		monster8Location = {x: Math.floor(Math.random()*300),
 			 y: Math.floor(Math.random()*200) + 200}
 			 // ;if(score>0){score -= 10};
-			}
+	}
 
 	//puff - monster 9
 	if((69 in keysDown)&&(heroLocation.x <= monster9Location.x + 45) 
@@ -339,10 +333,11 @@ function update(){
 		monster9Location = {x: Math.floor(Math.random()*300),
 			 y: Math.floor(Math.random()*600) - 200};
 			 score += 100
-			}
+	}
 	else if(monster9Location.x <= 1 || monster9Location.y <= 1){
 		monster9Location = {x: Math.floor(Math.random()*100 + 650),
-			 y: Math.floor(Math.random()*480)}}
+			 y: Math.floor(Math.random()*480)}
+	}
 
 
 	//turtle - monster 10  (bounce off all walls)
@@ -384,12 +379,12 @@ function update(){
 		monster12Location = {x: Math.floor(Math.random()*310+400),
 			 y: Math.floor(Math.random()*100) + 380};
 			 score += 100
-			}
+	}
 	else if(monster12Location.x <= 1 || monster12Location.y <= 1){
 		monster12Location = {x: Math.floor(Math.random()*310+400),
 			 y: Math.floor(Math.random()*300) + 280}
 			 // ;if(score>0){score -= 10};
-			}
+	}
 	sp =.5
 	// if(!gameOn){
 	// 	score = 0;
@@ -408,22 +403,15 @@ function update(){
 		backgroundImage.src = "background2.jpg"; 
 		hero.src = "shark-gun.png"
 		hsp = 1;
-		var qq = 5
-		shellLocation.y +=qq;
-		shell2Location.y +=qq;
-		shell3Location.y +=qq;
-		shell4Location.y +=qq;
-		shell5Location.y +=qq;
-		shell6Location.y +=qq;
-		shell7Location.y +=qq;
-		shell8Location.y +=qq;
-		shell9Location.y +=qq;
-		shell10Location.y +=qq;
-		shell11Location.y +=qq;
-		shell12Location.y +=qq;
+		var qq = 5;
+		shellLocation.y +=qq;	shell2Location.y +=qq;	shell3Location.y +=qq;
+		shell4Location.y +=qq;	shell5Location.y +=qq;	shell6Location.y +=qq;
+		shell7Location.y +=qq;	shell8Location.y +=qq;	shell9Location.y +=qq;
+		shell10Location.y +=qq;	shell11Location.y +=qq;	shell12Location.y +=qq;
 		shell13Location.y +=qq;
 		if(heroLocation.x > 200){heroLocation.x -= 3}
 	};
+
 	if(shellLocation.y >= 480){shellLocation = {x: 300, y: 0};}
 	if(shell2Location.y >= 480){shell2Location = {x: 300, y: 0};}
 	if(shell3Location.y >= 480){shell3Location = {x: 300, y: 0};}
@@ -458,7 +446,6 @@ function draw(){
 	context.drawImage(monster10, monster10Location.x, monster10Location.y);
 	context.drawImage(monster11, monster11Location.x, monster11Location.y);
 	context.drawImage(monster12, monster12Location.x, monster12Location.y);
- 	// deadfish
 	context.drawImage(deadfish, deadfishLocation.x, deadfishLocation.y);
 	context.drawImage(deadfish, deadfish2Location.x, deadfish2Location.y);
 	context.drawImage(deadfish, deadfish3Location.x, deadfish3Location.y);
@@ -490,7 +477,3 @@ function draw(){
 }
 
 draw()
-
-// if(score > 0){
-// 	document.getElementById("canvas").className="black"
-// }

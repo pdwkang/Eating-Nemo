@@ -36,6 +36,10 @@ canvas {
 	float: right;
 	margin-left: 10px;
 	box-shadow: 3px 3px 10px 5px #000;
+	font-family: "Permanent Marker";
+	color: black;
+	font-size: 27px;
+	font-weight: 500;
 }
 .game-canvas{margin-left: 10px;}
 .color-e{color: #BF360C;}
