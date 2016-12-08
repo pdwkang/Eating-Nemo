@@ -1,28 +1,109 @@
-
-canvas {
-	border: 5px solid black;
-	float: left;
+ .bgcolor {   /* body class */
+	background-color: #bbdefb;
+	padding: 10px 40px;
 }
-
-
-.description {
+canvas {
+	border: 5px solid #1C2A48;
+	border-radius: 10%;
 	float: left;
 	margin-left: 10px;
+	box-shadow: 3px 3px 10px 5px #000;
 }
-
-#score {
-	position: fixed;/* 
-	margin-top: 15px;
-	margin-left: 15px; */
-	font-family: sans-serif;
-	color: white;
+.header{
+	height: 90px;
+	text-align: center;
+	line-height: 70px;
+	font-size: 45px;
+	font-family: Frijole;
 	font-weight: 500;
-	background-color: black;
+	color: #1C2A48;
+}
+#score {
+	font-family: "Amatic SC";
+	font-size: 33px;
+	color: white;
+	font-weight: bold;
 	padding: 10px;
-	width: 690px;
+	position: fixed;
+	margin-top: 92px;
+	margin-left: 5px;
+}
+.description {
+	background-color: #29B6F6;
+	width: 40%;
+	border: 5px solid #1C2A48;
+	border-radius: 10%;
+	float: right;
+	margin-left: 10px;
+	box-shadow: 3px 3px 10px 5px #000;
+}
+.game-canvas{margin-left: 10px;}
+.color-e{color: #BF360C;}
+.color-r{color: #FFF59D;}
+.color-h{color: red;
+	text-decoration: underline;}
+
+.right-bottom{
+	clear: right;
+	margin-left: 30px;
+	margin-top: 30px;
+	float: right;
+	text-align: center;
 }
 
-.rotate{
-    -webkit-transform: rotate(180deg);
-	-webkit-transform: scaleX(-1);
+#newPlayerDiv input{
+	width: 300px;
+	margin-right: 20px;
+	height: 60px;
+	box-shadow: 3px 3px 10px 5px #000;
+	float: left;
+	font-family: "Amatic SC";
+	font-size: 30px;
+	padding-left: 10px;
+
 }
+
+#newPlayerDiv button{
+	width: 150px;
+	height: 60px;
+	box-shadow: 3px 3px 10px 5px #000;
+	background-color: green;
+	font-family: "Amatic SC";
+	font-size: 30px;
+	margin-right: 20px;
+
+}
+
+#timer{
+	clear: both;
+	margin-top: 40px;
+	font-family: sans-serif;
+	font-size: 30px;
+	color: red;
+	font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
