@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas Game!</title>
+	<link rel="stylesheet" type="text/css" href="canvas-game.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+	<style>@import 'https://fonts.googleapis.com/css?family=Frijole';</style>
+	<style>@import 'https://fonts.googleapis.com/css?family=Amatic+SC';</style>
+	<style>@import 'https://fonts.googleapis.com/css?family=Permanent+Marker';</style>
+	<style>@import 'https://fonts.googleapis.com/css?family=Monofett';</style>
+
+</head>
+<body class="bgcolor">
+<!-- Eating Nemo title -->
+<div class="col-sm-12 header">Eat<span class="color-e">i</span>ng 
+	N<span class="color-e">e</span>m<span class="color-e">o</span>
+</div>
+
+<!-- canvas floated left -->
+<div class="game-canvas">
+	<div id="score"></div>
+	<div><script type="text/javascript" src="canvas-game.js"></script></div>
+</div>
+
+
+<!-- description blue -->
+<div class="description text-center"> 
+Press 'E' to EAT fish<br><br>
+Alternate 'D' and 'F' <br> 
+to shoot the BOSS
+
+</div>	
+
+
+<div class="right-bottom">
+	<div id="newPlayerDiv">
+		<input id="player-name" type="text" placeholder="Name Your Shark!">
+		<button class="btn-primary" onClick = "startGame(), newPlayer()">Start Game!</button>
+	</div>	
+
+	<div id="timer">BOSS LEVEL IN <span class="mono">30</span> SECONDS</div>
+</div>
+
+
+</body>
+</html>

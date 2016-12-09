@@ -38,6 +38,18 @@
 	var shell12Location ={x:300, y:440}
 	var shell13Location ={x:300, y:480}
 	var bullet = new Image();   bullet.src="bullet.png"
+
+
+	// function test(){
+	// 	var arraryY = [];
+	// 	// create variable "string" + "number"
+	// 	// key (unique identifier)
+	// 	for(var i = 0; i<2; i++){
+	// 		arrayY.push(new Object{x:0, y:500})
+	// 	}
+	// }
+	// test();
+
 	var bullet1Location = {x:0, y:500}
 	var bullet2Location = {x:0, y:500}
 	var bullet3Location = {x:0, y:500}
@@ -282,27 +294,43 @@ function Player(name){   //player constructor
 }
 
 function updateSpeed(){     //monster speed and direction
-	monsterLocation.x += (1*sp);		monsterLocation.y -= (.5*sp)
-	monster2Location.x += (1.5*sp);		monster2Location.y -= (.5*sp)
-	monster3Location.x += 2*sp;			monster3Location.y -= 2*sp
-	monster4Location.x += 2.5*sp;		monster4Location.y -= .5*sp
-	monster5Location.x -= 1.5*sp;		monster5Location.y -= .5*sp
-	monster6Location.x -= 2*sp;			monster6Location.y -= -1*sp
-	monster7Location.x -= 3.5*sp;		monster7Location.y -= -.5*sp
+	monsterLocation.x += (1*sp);		
+	monsterLocation.y -= (.5*sp)
+	monster2Location.x += (1.5*sp);		
+	monster2Location.y -= (.5*sp)
+	monster3Location.x += 2*sp;			
+	monster3Location.y -= 2*sp
+	monster4Location.x += 2.5*sp;		
+	monster4Location.y -= .5*sp
+	monster5Location.x -= 1.5*sp;		
+	monster5Location.y -= .5*sp
+	monster6Location.x -= 2*sp;			
+	monster6Location.y -= -1*sp
+	monster7Location.x -= 3.5*sp;		
+	monster7Location.y -= -.5*sp
 	monster8Location.x += (1*sp);		
-	monster9Location.x -= 3*sp;			monster9Location.y -= .2*sp
+	monster9Location.x -= 3*sp;			
+	monster9Location.y -= .2*sp
 	monster10Location.x -= (.3*directionX*sp);	   
 	monster10Location.y -= (.3*directionY*sp)
 	monster11Location.x -= (4*directionX2*sp);     //bounce off walls
-	monster12Location.x -= .5*sp;		monster12Location.y -= 3*sp;
+	monster12Location.x -= .5*sp;		
+	monster12Location.y -= 3*sp;
 	
-	deadfishLocation.y += 3;	deadfish2Location.y += 3;	deadfish3Location.y += 3;	
-	deadfish4Location.y += 3;	deadfish5Location.y += 3;	deadfish6Location.y += 3
-	deadfish7Location.y += 3;	deadfish8Location.y += 3;	deadfish9Location.y += 3
-	deadfish10Location.y += 3;	deadfish11Location.y += 3;	deadfish12Location.y += 3;    // monsters speed
-	
-	boss1Location.x -= (.2*bossX);
-	boss1Location.y -= (.2*bossY);
+	deadfishLocation.y += 3;	
+	deadfish2Location.y += 3;	
+	deadfish3Location.y += 3;	
+	deadfish4Location.y += 3;	
+	deadfish5Location.y += 3;	
+	deadfish6Location.y += 3
+	deadfish7Location.y += 3;	
+	deadfish8Location.y += 3;	
+	deadfish9Location.y += 3
+	deadfish10Location.y += 3;	
+	deadfish11Location.y += 3;	
+	deadfish12Location.y += 3;    // monsters speed
+	boss1Location.x -= (2*bossX);
+	boss1Location.y -= (2*bossY);
 	bs = 15
  	for(var i = 0; i<100; i++){
  		bulletsArray[i].x += bs;}
