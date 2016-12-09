@@ -6,45 +6,166 @@
 	var directionX = 2; 	 //bounce off walls
 	var directionY = 2
 	var directionX2 = 2;
-	var sp = .5 	
-	var hsp = 1
-	var playerName = "You didn't name your shark";
+	var sp = .5 			// monster speed
+	var hsp = 1				// hero speed
+	var playerName
 	var gameOn = false;
 	var bossLevel = false;
-	var timeDifference
-	var playerArray = [];
+	var timeDifference		// countdown
+	var playerArray = [];	// names of sharks
+	var bossX = 1
+	var bossY = 1
+	var bs = 5;    //bulletspeed
+	var bulletCounter = 0
+	var bulletCounter2 = (bulletCounter + 50)
+	var bulletLevel2 = true;
+	var damage = 0
+	var pressF = true
 
-//start game and timer and save player name
-function startGame(){
-	gameOn = true;
-	gameStart = Date.now();
-	gameEnd = Date.now() + 30000;
-	timerInterval = setInterval(updateTimer, 1000)
-}
+//shells and bullets (border for boss level)	
+	var shell = new Image();		shell.src="shell.png"
+	var shellLocation ={x:300, y:0}
+	var shell2Location ={x:300, y:40}
+	var shell3Location ={x:300, y:80}
+	var shell4Location ={x:300, y:120}
+	var shell5Location ={x:300, y:160}
+	var shell6Location ={x:300, y:200}
+	var shell7Location ={x:300, y:240}
+	var shell8Location ={x:300, y:280}
+	var shell9Location ={x:300, y:320}
+	var shell10Location ={x:300, y:360}
+	var shell11Location ={x:300, y:400}
+	var shell12Location ={x:300, y:440}
+	var shell13Location ={x:300, y:480}
+	var bullet = new Image();   bullet.src="bullet.png"
+	var bullet1Location = {x:0, y:500}
+	var bullet2Location = {x:0, y:500}
+	var bullet3Location = {x:0, y:500}
+	var bullet4Location = {x:0, y:500}
+	var bullet5Location = {x:0, y:500}
+	var bullet6Location = {x:0, y:500}
+	var bullet7Location = {x:0, y:500}
+	var bullet8Location = {x:0, y:500}
+	var bullet9Location = {x:0, y:500}
+	var bullet10Location = {x:0, y:500}
+	var bullet11Location = {x:0, y:500}
+	var bullet12Location = {x:0, y:500}
+	var bullet13Location = {x:0, y:500}
+	var bullet14Location = {x:0, y:500}
+	var bullet15Location = {x:0, y:500}
+	var bullet16Location = {x:0, y:500}
+	var bullet17Location = {x:0, y:500}
+	var bullet18Location = {x:0, y:500}
+	var bullet19Location = {x:0, y:500}
+	var bullet20Location = {x:0, y:500}
+	var bullet21Location = {x:0, y:500}
+	var bullet22Location = {x:0, y:500}
+	var bullet23Location = {x:0, y:500}
+	var bullet24Location = {x:0, y:500}
+	var bullet25Location = {x:0, y:500}
+	var bullet26Location = {x:0, y:500}
+	var bullet27Location = {x:0, y:500}
+	var bullet28Location = {x:0, y:500}
+	var bullet29Location = {x:0, y:500}
+	var bullet30Location = {x:0, y:500}
+	var bullet31Location = {x:0, y:500}
+	var bullet32Location = {x:0, y:500}
+	var bullet33Location = {x:0, y:500}
+	var bullet34Location = {x:0, y:500}
+	var bullet35Location = {x:0, y:500}
+	var bullet36Location = {x:0, y:500}
+	var bullet37Location = {x:0, y:500}
+	var bullet38Location = {x:0, y:500}
+	var bullet39Location = {x:0, y:500}
+	var bullet40Location = {x:0, y:500}
+	var bullet41Location = {x:0, y:500}
+	var bullet42Location = {x:0, y:500}
+	var bullet43Location = {x:0, y:500}
+	var bullet44Location = {x:0, y:500}
+	var bullet45Location = {x:0, y:500}
+	var bullet46Location = {x:0, y:500}
+	var bullet47Location = {x:0, y:500}
+	var bullet48Location = {x:0, y:500}
+	var bullet49Location = {x:0, y:500}
+	var bullet50Location = {x:0, y:500}
+	var bullet51Location = {x:0, y:500}
+	var bullet52Location = {x:0, y:500}
+	var bullet53Location = {x:0, y:500}
+	var bullet54Location = {x:0, y:500}
+	var bullet55Location = {x:0, y:500}
+	var bullet56Location = {x:0, y:500}
+	var bullet57Location = {x:0, y:500}
+	var bullet58Location = {x:0, y:500}
+	var bullet59Location = {x:0, y:500}
+	var bullet60Location = {x:0, y:500}
+	var bullet61Location = {x:0, y:500}
+	var bullet62Location = {x:0, y:500}
+	var bullet63Location = {x:0, y:500}
+	var bullet64Location = {x:0, y:500}
+	var bullet65Location = {x:0, y:500}
+	var bullet66Location = {x:0, y:500}
+	var bullet67Location = {x:0, y:500}
+	var bullet68Location = {x:0, y:500}
+	var bullet69Location = {x:0, y:500}
+	var bullet70Location = {x:0, y:500}
+	var bullet71Location = {x:0, y:500}
+	var bullet72Location = {x:0, y:500}
+	var bullet73Location = {x:0, y:500}
+	var bullet74Location = {x:0, y:500}
+	var bullet75Location = {x:0, y:500}
+	var bullet76Location = {x:0, y:500}
+	var bullet77Location = {x:0, y:500}
+	var bullet78Location = {x:0, y:500}
+	var bullet79Location = {x:0, y:500}
+	var bullet80Location = {x:0, y:500}
+	var bullet81Location = {x:0, y:500}
+	var bullet82Location = {x:0, y:500}
+	var bullet83Location = {x:0, y:500}
+	var bullet84Location = {x:0, y:500}
+	var bullet85Location = {x:0, y:500}
+	var bullet86Location = {x:0, y:500}
+	var bullet87Location = {x:0, y:500}
+	var bullet88Location = {x:0, y:500}
+	var bullet89Location = {x:0, y:500}
+	var bullet90Location = {x:0, y:500}
+	var bullet91Location = {x:0, y:500}
+	var bullet92Location = {x:0, y:500}
+	var bullet93Location = {x:0, y:500}
+	var bullet94Location = {x:0, y:500}
+	var bullet95Location = {x:0, y:500}
+	var bullet96Location = {x:0, y:500}
+	var bullet97Location = {x:0, y:500}
+	var bullet98Location = {x:0, y:500}
+	var bullet99Location = {x:0, y:500}
+	var bullet100Location = {x:0, y:500}
+	var bulletsArray = [bullet1Location, bullet2Location, bullet3Location,
+		bullet4Location, bullet5Location, bullet6Location, bullet7Location,
+		bullet8Location, bullet9Location, bullet10Location, bullet11Location, 
+		bullet12Location, bullet13Location, bullet14Location, bullet15Location, 
+		bullet16Location, bullet17Location, bullet18Location, bullet19Location, 
+		bullet20Location, bullet21Location, bullet22Location, bullet23Location,
+		bullet24Location, bullet25Location, bullet26Location, bullet27Location,
+		bullet28Location, bullet29Location, bullet30Location, bullet31Location, 
+		bullet32Location, bullet33Location, bullet34Location, bullet35Location, 
+		bullet36Location, bullet37Location, bullet38Location, bullet39Location, 
+		bullet40Location, bullet41Location, bullet42Location, bullet43Location,
+		bullet44Location, bullet45Location, bullet46Location, bullet47Location,
+		bullet48Location, bullet49Location, bullet50Location, bullet51Location, 
+		bullet52Location, bullet53Location, bullet54Location, bullet55Location, 
+		bullet56Location, bullet57Location, bullet58Location, bullet59Location, 
+		bullet60Location, bullet61Location, bullet62Location, bullet63Location,
+		bullet64Location, bullet65Location, bullet66Location, bullet67Location,
+		bullet68Location, bullet69Location, bullet70Location, bullet71Location, 
+		bullet72Location, bullet73Location, bullet74Location, bullet75Location, 
+		bullet76Location, bullet77Location, bullet78Location, bullet79Location, 
+		bullet80Location, bullet81Location, bullet82Location, bullet83Location,
+		bullet84Location, bullet85Location, bullet86Location, bullet87Location,
+		bullet88Location, bullet89Location, bullet90Location, bullet91Location, 
+		bullet92Location, bullet93Location, bullet94Location, bullet95Location, 
+		bullet96Location, bullet97Location, bullet98Location, bullet99Location, 
+		bullet100Location]
 
-function updateTimer(){
-	var newNow = Date.now();
-	timeDifference = (gameEnd - newNow) / 1000;
-	if(timeDifference <= 0){clearInterval(timerInterval);
-		bossLevel = true; timeDifference = 0;
-	}else{
-	document.getElementById('timer').innerHTML = "BOSS LEVEL IN " + 
-	Math.round(timeDifference) + " SECONDS";
-	};
-	if(bossLevel){document.getElementById('timer').innerHTML = playerName +" !! " + "KILL THE BOSS !!"}
-}
-function newPlayer(){
-	playerNameDiv = document.getElementById("player-name");
-	playerName = playerNameDiv.value;
-	playerArray.push(new Player(playerName));
-}
-
-function Player(name){   //player constructor
-	this.name = name;
-	this.highscore = 0;
-}
-
-//magic
+//MAAGGGICCC
 	var canvas = document.createElement("canvas");
 	var context = canvas.getContext('2d')
 	canvas.width = 700;		      canvas.height = 480;
@@ -59,10 +180,10 @@ function Player(name){   //player constructor
 		delete keysDown[event.keyCode];
 	});
 
-//monsters
+//monsters image and location
 	var hero = new Image();  		hero.src = "shark.png"
 	var heroLocation = {x: 310, y: 200}
-	hero.id = "heroID";
+	hero.id = "heroID";	
 
 	var monster = new Image();		monster.src = "dory1.png";
 	var monsterLocation = {x: Math.floor(Math.random()*301),
@@ -112,6 +233,8 @@ function Player(name){   //player constructor
 	var monster12Location = {x: Math.floor(Math.random()*700 - 50),
 		 y: Math.floor(Math.random()*80 + 400)}
 
+	var boss1 = new Image();			boss1.src = "boss.png";
+	var boss1Location = {x: 555, y: 250}
 
 //deadfish
 	var deadfish = new Image();		deadfish.src = "deadfish.png";
@@ -127,34 +250,38 @@ function Player(name){   //player constructor
 	var deadfish10Location = {x: 0, y:700}
 	var deadfish11Location = {x: 0, y:700}
 	var deadfish12Location = {x: 0, y:700}
+ 
+function startGame(){     //change time for boss
+	gameOn = true;
+	gameStart = Date.now();
+	gameEnd = Date.now() + 30000;
+	timerInterval = setInterval(updateTimer, 1000)
+}
 
+function updateTimer(){
+	var newNow = Date.now();
+	timeDifference = (gameEnd - newNow) / 1000;
+	if(timeDifference <= 0){clearInterval(timerInterval);
+		bossLevel = true; timeDifference = 0;
+	}else{
+	document.getElementById('timer').innerHTML = "BOSS LEVEL IN " + 
+	"<span class='mono'>" + Math.round(timeDifference) +  "</span>" + " SECONDS";
+	};
+	if(bossLevel){document.getElementById('timer').innerHTML = playerName +" !! " + "KILL THE BOSS !!"}
+}
 
-//shell border for boss level	
-	var shell = new Image();		shell.src="shell.png"
-	var shellLocation ={x:300, y:0}
-	var shell2Location ={x:300, y:40}
-	var shell3Location ={x:300, y:80}
-	var shell4Location ={x:300, y:120}
-	var shell5Location ={x:300, y:160}
-	var shell6Location ={x:300, y:200}
-	var shell7Location ={x:300, y:240}
-	var shell8Location ={x:300, y:280}
-	var shell9Location ={x:300, y:320}
-	var shell10Location ={x:300, y:360}
-	var shell11Location ={x:300, y:400}
-	var shell12Location ={x:300, y:440}
-	var shell13Location ={x:300, y:480}
+function newPlayer(){
+	playerNameDiv = document.getElementById("player-name");
+	playerName = playerNameDiv.value;
+	playerArray.push(new Player(playerName));
+}
 
-//the game
-function update(){
-	document.getElementById("score").innerHTML ="&nbsp &nbsp Score: " + 
-		"<span class='color-r'>" + score + "</span>"+ "&nbsp &nbsp &nbsp &nbsp High Score: "+
-		"<span class='color-h'>" + highScore + "</span>";	
-		 // "Level: " + level + "&nbsp &nbsp &nbsp &nbsp 
-	// extra speed
-	if(score>highScore){highScore=score};
+function Player(name){   //player constructor
+	this.name = name;
+	this.highscore = 0;
+}
 
-// monster and deadfish location
+function updateSpeed(){     //monster speed and direction
 	monsterLocation.x += (1*sp);		monsterLocation.y -= (.5*sp)
 	monster2Location.x += (1.5*sp);		monster2Location.y -= (.5*sp)
 	monster3Location.x += 2*sp;			monster3Location.y -= 2*sp
@@ -164,39 +291,135 @@ function update(){
 	monster7Location.x -= 3.5*sp;		monster7Location.y -= -.5*sp
 	monster8Location.x += (1*sp);		
 	monster9Location.x -= 3*sp;			monster9Location.y -= .2*sp
-	monster10Location.x -= (.3*directionX*sp);	
+	monster10Location.x -= (.3*directionX*sp);	   
 	monster10Location.y -= (.3*directionY*sp)
-	monster11Location.x -= (4*directionX2*sp);
+	monster11Location.x -= (4*directionX2*sp);     //bounce off walls
 	monster12Location.x -= .5*sp;		monster12Location.y -= 3*sp;
-	deadfishLocation.y += 3;	
-	deadfish2Location.y += 3
-	deadfish3Location.y += 3;	
-	deadfish4Location.y += 3
-	deadfish5Location.y += 3;	
-	deadfish6Location.y += 3
-	deadfish7Location.y += 3;
-	deadfish8Location.y += 3;	
-	deadfish9Location.y += 3
-	deadfish10Location.y += 3;
-	deadfish11Location.y += 3;
-	deadfish12Location.y += 3;
 	
-	//shark changing image direction
+	deadfishLocation.y += 3;	deadfish2Location.y += 3;	deadfish3Location.y += 3;	
+	deadfish4Location.y += 3;	deadfish5Location.y += 3;	deadfish6Location.y += 3
+	deadfish7Location.y += 3;	deadfish8Location.y += 3;	deadfish9Location.y += 3
+	deadfish10Location.y += 3;	deadfish11Location.y += 3;	deadfish12Location.y += 3;    // monsters speed
+	
+	boss1Location.x -= (.2*bossX);
+	boss1Location.y -= (.2*bossY);
+	bs = 15
+ 	for(var i = 0; i<100; i++){
+ 		bulletsArray[i].x += bs;}
+}
+
+function fireBullet(){
+	if((70 in keysDown)&&(pressF)){
+		if(bulletCounter >= 100){bulletCounter = 0};
+		bulletsArray[bulletCounter] = {x: heroLocation.x+80, y: heroLocation.y + 33};
+		bulletCounter++;
+		pressF = false;
+	}
+	if((68 in keysDown)&&(!pressF)){
+		if(bulletCounter >= 100){bulletCounter = 0};
+		bulletsArray[bulletCounter] = {x: heroLocation.x+80, y: heroLocation.y + 33};
+		bulletCounter++;
+		pressF = true;	
+	}
+}
+
+function fireBullet2(){
+	if((70 in keysDown)&&(pressF)){
+		if(bulletCounter2 >= 100){bulletCounter2 = 0};
+		bulletsArray[bulletCounter2] = {x: heroLocation.x+80, y: heroLocation.y + 45};
+		bulletCounter2++;
+		pressF = false;
+	}
+	if((68 in keysDown)&&(!pressF)){
+		if(bulletCounter2 >= 100){bulletCounter2 = 0};
+		bulletsArray[bulletCounter2] = {x: heroLocation.x+80, y: heroLocation.y + 45};
+		bulletCounter2++;
+		pressF = true;	
+	}
+}
+
+function collisionBoss(){
+	for(var i = 0; i<100; i++){
+		if((bulletsArray[i].x <= boss1Location.x + 45) 
+			&& (bulletsArray[i].y <= boss1Location.y + 150)
+			&& (bulletsArray[i].x >= boss1Location.x - 45)
+			&& (bulletsArray[i].y >= boss1Location.y + 50)){
+			damage++
+			console.log(damage)
+		}
+	}
+}
+
+function runBossLevel(){
+	if(bossLevel){
+		backgroundImage.src = "background2.jpg"; 
+		hero.src = "shark-gun.png"
+		hsp = 1;
+
+		fireBullet()
+		collisionBoss()
+		if(bulletLevel2){fireBullet2()}
+		// shell location
+		var qq = 5;
+		shellLocation.y +=qq;	shell2Location.y +=qq;	shell3Location.y +=qq;
+		shell4Location.y +=qq;	shell5Location.y +=qq;	shell6Location.y +=qq;
+		shell7Location.y +=qq;	shell8Location.y +=qq;	shell9Location.y +=qq;
+		shell10Location.y +=qq;	shell11Location.y +=qq;	shell12Location.y +=qq;
+		shell13Location.y +=qq;
+		if(heroLocation.x > 200){heroLocation.x -= 3}
+		if(shellLocation.y >= 480){shellLocation = {x: 300, y: 0};}
+		if(shell2Location.y >= 480){shell2Location = {x: 300, y: 0};}
+		if(shell3Location.y >= 480){shell3Location = {x: 300, y: 0};}
+		if(shell4Location.y >= 480){shell4Location = {x: 300, y: 0};}
+		if(shell5Location.y >= 480){shell5Location = {x: 300, y: 0};}
+		if(shell6Location.y >= 480){shell6Location = {x: 300, y: 0};}
+		if(shell7Location.y >= 480){shell7Location = {x: 300, y: 0};}
+		if(shell8Location.y >= 480){shell8Location = {x: 300, y: 0};}
+		if(shell9Location.y >= 480){shell9Location = {x: 300, y: 0};}
+		if(shell10Location.y >= 480){shell10Location = {x: 300, y: 0};}
+		if(shell11Location.y >= 480){shell11Location = {x: 300, y: 0};}
+		if(shell12Location.y >= 480){shell12Location = {x: 300, y: 0};}
+		if(shell13Location.y >= 480){shell13Location = {x: 300, y: 0};};
+
+		//boss1
+		if(boss1Location.x >=450){bossX = 1};		if(boss1Location.x <=400){bossX = -1};
+		if(boss1Location.y >=300){bossY = 1};		if(boss1Location.y <=0){bossY = -1};
+		//bullet
+		// if(69 in keysDown){bullet1.img.x = heroLocation.x} 
+	}else{
+		boss1Location = {x: 555, y: 250}
+	}
+}
+
+function moveShark(){
 	if((gameOn)&&(!bossLevel)){
 		if(keysDown[39]){hero.src="shark-right.png"; console.log("ur moving right");
 		}else if(keysDown[37]){hero.src="shark-left.png"; console.log("ur moving left");
 		}else{hero.src="shark.png";}
 	}
-	
-	//bruce
+
 	if((!bossLevel)&&(39 in keysDown)&&(heroLocation.x < 601)){heroLocation.x += (6*hsp);  //right
 		}else if((bossLevel)&&(39 in keysDown)&&(heroLocation.x < 200)){heroLocation.x += (6*hsp);} 
 	if((37 in keysDown)&&(heroLocation.x > 5)){heroLocation.x -= (6*hsp);}    //left
 	if((38 in keysDown)&&(heroLocation.y > 5)){heroLocation.y -= (6*hsp);}     //up
-	if((40 in keysDown)&&(heroLocation.y < 403)){heroLocation.y += (6*hsp);}   //down
-	// bossLevel
+	if((40 in keysDown)&&(heroLocation.y < 403)){heroLocation.y += (6*hsp);}   //down		
+}
 
-	//dory1	- monster1
+function getScore(){
+	if(score>highScore){highScore=score};
+
+	document.getElementById("score").innerHTML ="&nbsp &nbsp Score: " + 
+		"<span class='color-r'>" + score + "</span>" + 
+		"&nbsp &nbsp &nbsp &nbsp High Score: "+
+		"<span class='color-h'>" + highScore + "</span>";
+
+	if(bossLevel){
+		document.getElementById("score").innerHTML += 
+		"<span class='dmg-color'>&nbsp &nbsp &nbsp &nbsp Damage: " + damage + "</span>"	
+	}	
+}	
+
+function moveMonster(){          //before boss level
 	if((69 in keysDown)&&(heroLocation.x <= monsterLocation.x + 45) 
 		&& (heroLocation.y <= monsterLocation.y + 45)
 		&& (monsterLocation.x <= heroLocation.x + 45)
@@ -385,55 +608,37 @@ function update(){
 			 y: Math.floor(Math.random()*300) + 280}
 			 // ;if(score>0){score -= 10};
 	}
+}
+
+function changeLevel(){
 	sp =.5
-	// if(!gameOn){
-	// 	score = 0;
-	// 	sp = .5
-	// 	// add more stuff when game over
-	// }
 	if(score>20000){sp=4; level=5
 	}else if(score > 10000){sp=2.2; level=4
 	}else if(score > 7000){sp = 1.7; level=3
 	}else if(score > 3000){sp = 1.2; level=2
 	}else{backgroundImage.src = "background.png"; level=1
 	};
-	// hero.src="shark.png";
-
-	if(bossLevel){
-		backgroundImage.src = "background2.jpg"; 
-		hero.src = "shark-gun.png"
-		hsp = 1;
-		var qq = 5;
-		shellLocation.y +=qq;	shell2Location.y +=qq;	shell3Location.y +=qq;
-		shell4Location.y +=qq;	shell5Location.y +=qq;	shell6Location.y +=qq;
-		shell7Location.y +=qq;	shell8Location.y +=qq;	shell9Location.y +=qq;
-		shell10Location.y +=qq;	shell11Location.y +=qq;	shell12Location.y +=qq;
-		shell13Location.y +=qq;
-		if(heroLocation.x > 200){heroLocation.x -= 3}
-	};
-
-	if(shellLocation.y >= 480){shellLocation = {x: 300, y: 0};}
-	if(shell2Location.y >= 480){shell2Location = {x: 300, y: 0};}
-	if(shell3Location.y >= 480){shell3Location = {x: 300, y: 0};}
-	if(shell4Location.y >= 480){shell4Location = {x: 300, y: 0};}
-	if(shell5Location.y >= 480){shell5Location = {x: 300, y: 0};}
-	if(shell6Location.y >= 480){shell6Location = {x: 300, y: 0};}
-	if(shell7Location.y >= 480){shell7Location = {x: 300, y: 0};}
-	if(shell8Location.y >= 480){shell8Location = {x: 300, y: 0};}
-	if(shell9Location.y >= 480){shell9Location = {x: 300, y: 0};}
-	if(shell10Location.y >= 480){shell10Location = {x: 300, y: 0};}
-	if(shell11Location.y >= 480){shell11Location = {x: 300, y: 0};}
-	if(shell12Location.y >= 480){shell12Location = {x: 300, y: 0};}
-	if(shell13Location.y >= 480){shell13Location = {x: 300, y: 0};}
 }
 
-function draw(){
-	update();	
-	context.drawImage(backgroundImage, 0, 0);
-	if(gameOn){context.drawImage(hero, heroLocation.x, heroLocation.y);}
-	else{context.drawImage(hero, 310, 200)};
+function update(){
+	moveShark()
+	changeLevel()
+	runBossLevel()
+	if(!bossLevel){moveMonster()}
+	getScore()	
+}
 
-	if(!bossLevel){
+function drawBullets(){
+	// var firingRate = 0
+	for(var i = 0; i<100; i++){
+		// if((bulletsArray[i].x - firingRate)>5){
+			context.drawImage(bullet, bulletsArray[i].x, bulletsArray[i].y);
+		// } firingRate = bulletsArray[i].x
+
+	}
+}
+
+function drawMonster(){
 	context.drawImage(monster, monsterLocation.x, monsterLocation.y);
 	context.drawImage(monster2, monster2Location.x, monster2Location.y);
 	context.drawImage(monster3, monster3Location.x, monster3Location.y);
@@ -458,22 +663,43 @@ function draw(){
 	context.drawImage(deadfish, deadfish10Location.x, deadfish10Location.y);
 	context.drawImage(deadfish, deadfish11Location.x, deadfish11Location.y);
 	context.drawImage(deadfish, deadfish12Location.x, deadfish12Location.y);
+}
+
+function drawShell(){
+	context.drawImage(shell, shellLocation.x, shellLocation.y);
+	context.drawImage(shell, shell2Location.x, shell2Location.y);
+	context.drawImage(shell, shell3Location.x, shell3Location.y);
+	context.drawImage(shell, shell4Location.x, shell4Location.y);
+	context.drawImage(shell, shell5Location.x, shell5Location.y);
+	context.drawImage(shell, shell6Location.x, shell6Location.y);
+	context.drawImage(shell, shell7Location.x, shell7Location.y);
+	context.drawImage(shell, shell8Location.x, shell8Location.y);
+	context.drawImage(shell, shell9Location.x, shell9Location.y);
+	context.drawImage(shell, shell10Location.x, shell10Location.y);
+	context.drawImage(shell, shell11Location.x, shell11Location.y);
+	context.drawImage(shell, shell12Location.x, shell12Location.y);
+	context.drawImage(shell, shell13Location.x, shell13Location.y);	
+}
+
+function draw(){
+	// context.drawImage(monster1, monster1.x, monster1.y);
+	update();	
+	updateSpeed();
+	context.drawImage(backgroundImage, 0, 0);
+	if(gameOn){context.drawImage(hero, heroLocation.x, heroLocation.y);}
+	else{context.drawImage(hero, 310, 200)};
+
+	if(!bossLevel){
+		drawMonster()
 	}else{
-		context.drawImage(shell, shellLocation.x, shellLocation.y);
-		context.drawImage(shell, shell2Location.x, shell2Location.y);
-		context.drawImage(shell, shell3Location.x, shell3Location.y);
-		context.drawImage(shell, shell4Location.x, shell4Location.y);
-		context.drawImage(shell, shell5Location.x, shell5Location.y);
-		context.drawImage(shell, shell6Location.x, shell6Location.y);
-		context.drawImage(shell, shell7Location.x, shell7Location.y);
-		context.drawImage(shell, shell8Location.x, shell8Location.y);
-		context.drawImage(shell, shell9Location.x, shell9Location.y);
-		context.drawImage(shell, shell10Location.x, shell10Location.y);
-		context.drawImage(shell, shell11Location.x, shell11Location.y);
-		context.drawImage(shell, shell12Location.x, shell12Location.y);
-		context.drawImage(shell, shell13Location.x, shell13Location.y);
+		context.drawImage(boss1, boss1Location.x, boss1Location.y);
+		drawShell();
+		drawBullets();
+		// setInterval(drawBullets, 500);
 	};
 	requestAnimationFrame(draw);	
 }
 
 draw()
+
+

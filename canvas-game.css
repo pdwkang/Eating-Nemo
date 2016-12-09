@@ -38,15 +38,16 @@ canvas {
 	box-shadow: 3px 3px 10px 5px #000;
 	font-family: "Permanent Marker";
 	color: black;
-	font-size: 27px;
+	font-size: 24px;
 	font-weight: 500;
+	padding: 20px;
+	height: 320px;
 }
 .game-canvas{margin-left: 10px;}
 .color-e{color: #BF360C;}
 .color-r{color: #FFF59D;}
 .color-h{color: red;
 	text-decoration: underline;}
-
 .right-bottom{
 	clear: right;
 	margin-left: 30px;
@@ -54,7 +55,6 @@ canvas {
 	float: right;
 	text-align: center;
 }
-
 #newPlayerDiv input{
 	width: 300px;
 	margin-right: 20px;
@@ -64,9 +64,7 @@ canvas {
 	font-family: "Amatic SC";
 	font-size: 30px;
 	padding-left: 10px;
-
 }
-
 #newPlayerDiv button{
 	width: 150px;
 	height: 60px;
@@ -75,22 +73,25 @@ canvas {
 	font-family: "Amatic SC";
 	font-size: 30px;
 	margin-right: 20px;
-
 }
-
 #timer{
 	clear: both;
 	margin-top: 40px;
 	font-family: sans-serif;
 	font-size: 30px;
-	color: red;
+	color: black;
 	font-weight: bold;
 }
+.mono{
+	font-family: Monofett;
+	font-size: 40px;
+	font-weight: 100;
+	color: red;
+}
 
-
-
-
-
+.dmg-color{
+	color:  black;
+}
 
 
 
