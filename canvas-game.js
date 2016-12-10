@@ -37,6 +37,8 @@
 	var shell11Location ={x:300, y:400}
 	var shell12Location ={x:300, y:440}
 	var shell13Location ={x:300, y:480}
+
+
 	var bullet = new Image();   bullet.src="bullet.png"
 
 
@@ -435,19 +437,19 @@ function moveShark(){
 
 function getScore(){
 	if(score>highScore){highScore=score};
-
-	document.getElementById("score").innerHTML ="&nbsp &nbsp Score: " + 
-		"<span class='color-r'>" + score + "</span>" + 
-		"&nbsp &nbsp &nbsp &nbsp High Score: "+
-		"<span class='color-h'>" + highScore + "</span>";
-
+	document.getElementById('score').innerHTML =
+	 `&nbsp &nbsp &nbsp &nbsp SCORE: <span class='color-3'>${score}
+	 &nbsp &nbsp &nbsp &nbsp &nbsp </span>    
+	 HIGH SCORE: <span class='color-h'>${highScore}</span>&nbsp &nbsp &nbsp &nbsp `;
 	if(bossLevel){
-		document.getElementById("score").innerHTML += 
-		"<span class='dmg-color'>&nbsp &nbsp &nbsp &nbsp Damage: " + damage + "</span>"	
-	}	
+		document.getElementById('score').innerHTML += 
+		`<span class='dmg-color'>DAMAGE: ${damage}</span>`};
 }	
 
-function moveMonster(){          //before boss level
+function moveMonster(){//before boss level
+	//cannot loop through array 
+	//each monster spawns in different part of canvas
+	//dory1 - monster1
 	if((69 in keysDown)&&(heroLocation.x <= monsterLocation.x + 45) 
 		&& (heroLocation.y <= monsterLocation.y + 45)
 		&& (monsterLocation.x <= heroLocation.x + 45)
