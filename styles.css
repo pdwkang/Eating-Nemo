@@ -18,23 +18,26 @@ canvas {
 	font-weight: 500;
 	color: #1C2A48;
 }
+.header img{
+	height: 80%;
+}
 #score {
 	font-family: "Amatic SC";
 	font-size: 33px;
-	color: white;
+	color: black;
 	font-weight: bold;
-	padding: 10px;
-	position: fixed;
-	margin-top: 92px;
-	margin-left: 5px;
+	position: absolute;
+	margin-top: 105px;
+	margin-left: -5px;
+	/* text-shadow: 2px 2px white; */
 }
 .description {
 	background-color: #29B6F6;
-	width: 40%;
+	width: 38%;
 	border: 5px solid #1C2A48;
 	border-radius: 10%;
 	float: right;
-	margin-left: 10px;
+	margin-left: 40px;
 	box-shadow: 3px 3px 10px 5px #000;
 	font-family: "Permanent Marker";
 	color: black;
@@ -43,6 +46,48 @@ canvas {
 	padding: 20px;
 	height: 320px;
 }
+
+.e-key{
+	/* border: 1px solid black; */
+	height: 80px;
+	background-image: url("eKey.png");
+	background-size: 80%;
+	background-repeat: no-repeat;
+}
+.f-key{
+	height: 80px;
+	background-image: url("fKey.png");
+	background-size: 80%;
+	background-repeat: no-repeat;
+}
+.key-description{
+	text-align: left;
+	height: 80px;
+	line-height: 55px;
+}
+.key-description2{
+	text-align: left;
+	height: 80px;
+	line-height: 28px;
+}
+.boss-font{
+	font-size: 18px;
+}
+.arrow-keys{
+	/* border: 1px solid black; */
+	height: 160px;
+	background-image: url("arrows.png");
+	background-size: 95%;
+	background-repeat: no-repeat;
+}
+
+.game-description{
+	border-bottom: dotted 2px black;
+	font-family: Monda;
+	font-size: 20px;
+	text-align: left;
+}
+
 .game-canvas{margin-left: 10px;}
 .color-e{color: #BF360C;}
 .color-r{color: #FFF59D;}
@@ -75,16 +120,28 @@ canvas {
 	margin-right: 20px;
 }
 #timer{
-	clear: both;
-	margin-top: 40px;
-	font-family: sans-serif;
-	font-size: 30px;
+	margin-top: 20px;
+	font-family: "Rock Salt";
+	font-size: 27px;
 	color: black;
 	font-weight: bold;
+	position: absolute;
+	left: 950px;
+	top: 450px;
+	text-align: center;
 }
-.mono{
-	font-family: Monofett;
+.name-shark{
+	clear: both;
+	margin-top: 20px;
+	font-family: "Amatic SC";
 	font-size: 40px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.mono{
+	font-family: Monoton;
+	font-size: 55px;
 	font-weight: 100;
 	color: red;
 }
@@ -94,14 +151,99 @@ canvas {
 }
 
 .fishCount{
-	
+	background-color: #29B6F6;
+	width: 100%;
+	border: 5px solid #1C2A48;
+	border-radius: 5%;
+	float: left;
+	margin-top: 30px;
+	margin-left: 10px;
+	box-shadow: 3px 3px 10px 5px #000;
+	font-family: "Permanent Marker";
+	color: black;
+	font-size: 24px;
+	font-weight: 500;
+	height: 80px;
+	padding: 10px;
+}
+
+.fish-box{
+/* 	border: black 1px solid;
+	border-radius: 50%; */
+	margin-top: -1px;	
+	height: 55px;
+	line-height: 65px; padding-left: -5px;
+	padding: 0;
+	font-size: 50px;
 }
 
 
+.nemo-pic{
+	background-image: url("nemo2.png");
+	background-repeat: no-repeat;
+	text-align: right;
+	font-size: 17px;
+	border-left: 3px dashed blue;
+}
+.dory-pic{
+	background-image: url("dory1.png");
+	background-repeat: no-repeat;
+	text-align: right;
+	font-size: 20px;
+	border-left: 3px dashed blue;
+}
 
+.stripe-pic{
+	background-image: url("stripe1.png");
+	background-repeat: no-repeat;
+	text-align: right;
+	font-size: 20px;
+	border-left: 3px dashed blue;
+}
+.jellyfish-pic{
+	background-image: url("jellyfish1.png");
+	background-repeat: no-repeat;
+	text-align: right;
+	font-size: 20px;
+	border-left: 3px dashed blue;
+}
+.puff-pic{
+	background-image: url("puffer1.png");
+	background-repeat: no-repeat;
+	text-align: right;
+	font-size: 20px;
+	border-left: 3px dashed blue;
+}
+.turtle-pic{
+	background-image: url("turtle1.png");
+	background-repeat: no-repeat;
+	text-align: right;
+	font-size: 20px;
+	border-left: 3px dashed blue;
+}
+.catch{
+	line-height: 55px;
+	color: black;
+	font-weight: 900;
+	font-size: 35px;
+	font-family: "Amatic SC";
+	text-shadow: 2px 2px yellow;
+}
 
-
-
+#health-bar-bg{
+	border: 3px solid black;
+	height: 50px;
+	background-color: red;
+	padding: 0;
+}
+#healthBar{
+	border: 1px solid yellow;
+	margin: 0;
+	height: 44px;
+	line-height: 50px;
+	padding-left: 10px;
+	/* text-shadow: 2px 2px blue; */
+}
 
 
 
