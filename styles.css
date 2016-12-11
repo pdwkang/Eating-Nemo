@@ -5,6 +5,8 @@
 canvas {
 	border: 5px solid #1C2A48;
 	border-radius: 10%;
+	border-bottom-left-radius: 5%;
+	/* border-bottom-right-radius: 0%; */
 	float: left;
 	margin-left: 10px;
 	box-shadow: 3px 3px 10px 5px #000;
@@ -22,15 +24,29 @@ canvas {
 	height: 80%;
 }
 #score {
-	font-family: "Amatic SC";
-	font-size: 33px;
+	font-family: "Bungee Inline";
+	font-size: 20px;
 	color: black;
-	font-weight: bold;
+	font-weight: 100;
 	position: absolute;
 	margin-top: 105px;
-	margin-left: -5px;
+	margin-left: 5px;
 	/* text-shadow: 2px 2px white; */
 }
+
+#displayLevel{
+	position: absolute;
+	margin-left: 580px;
+	margin-top: 105px;
+	background-color: black;
+	font-family: "Bungee Inline";
+	font-size: 15px;
+	color: yellow;
+	padding: 3px 6px;
+	border-radius: 20%;
+	border: 2px solid yellow;
+}
+
 .description {
 	background-color: #29B6F6;
 	width: 38%;
@@ -39,7 +55,7 @@ canvas {
 	float: right;
 	margin-left: 40px;
 	box-shadow: 3px 3px 10px 5px #000;
-	font-family: "Permanent Marker";
+	font-family: "Bungee Inline";
 	color: black;
 	font-size: 24px;
 	font-weight: 500;
@@ -71,7 +87,7 @@ canvas {
 	line-height: 28px;
 }
 .boss-font{
-	font-size: 18px;
+	font-size: 13px;
 }
 .arrow-keys{
 	/* border: 1px solid black; */
@@ -121,13 +137,13 @@ canvas {
 }
 #timer{
 	margin-top: 20px;
-	font-family: "Rock Salt";
-	font-size: 27px;
-	color: black;
-	font-weight: bold;
+	font-family: "Bungee Inline";
+	font-size: 35px;
+	color: blue;
+	font-weight: 100;
 	position: absolute;
-	left: 950px;
-	top: 450px;
+	left: 920px;
+	top: 435px;
 	text-align: center;
 }
 .name-shark{
@@ -136,7 +152,7 @@ canvas {
 	font-family: "Amatic SC";
 	font-size: 40px;
 	font-weight: bold;
-	text-decoration: underline;
+	/* text-decoration: underline; */
 }
 
 .mono{
@@ -159,7 +175,7 @@ canvas {
 	margin-top: 30px;
 	margin-left: 10px;
 	box-shadow: 3px 3px 10px 5px #000;
-	font-family: "Permanent Marker";
+	font-family: "Bungee Inline";
 	color: black;
 	font-size: 24px;
 	font-weight: 500;
@@ -172,61 +188,36 @@ canvas {
 	border-radius: 50%; */
 	margin-top: -1px;	
 	height: 55px;
-	line-height: 65px; padding-left: -5px;
-	padding: 0;
+	line-height: 59px; padding-left: -5px;
+	
 	font-size: 50px;
 }
 
 
-.nemo-pic{
-	background-image: url("nemo2.png");
-	background-repeat: no-repeat;
-	text-align: right;
-	font-size: 17px;
-	border-left: 3px dashed blue;
-}
-.dory-pic{
-	background-image: url("dory1.png");
+.fish-pic{
 	background-repeat: no-repeat;
 	text-align: right;
 	font-size: 20px;
 	border-left: 3px dashed blue;
+	margin-top: -1px;	
+	height: 55px;
+	line-height: 65px; padding-left: -5px;
+	
 }
+.nemo-pic{background-image: url("nemo2.png");}
+.dory-pic{background-image: url("dory1.png");}
+.stripe-pic{background-image: url("stripe1.png");}
+.jellyfish-pic{background-image: url("jellyfish1.png");}
+.puff-pic{background-image: url("puffer1.png");}
+.turtle-pic{background-image: url("turtle1.png");}
 
-.stripe-pic{
-	background-image: url("stripe1.png");
-	background-repeat: no-repeat;
-	text-align: right;
-	font-size: 20px;
-	border-left: 3px dashed blue;
-}
-.jellyfish-pic{
-	background-image: url("jellyfish1.png");
-	background-repeat: no-repeat;
-	text-align: right;
-	font-size: 20px;
-	border-left: 3px dashed blue;
-}
-.puff-pic{
-	background-image: url("puffer1.png");
-	background-repeat: no-repeat;
-	text-align: right;
-	font-size: 20px;
-	border-left: 3px dashed blue;
-}
-.turtle-pic{
-	background-image: url("turtle1.png");
-	background-repeat: no-repeat;
-	text-align: right;
-	font-size: 20px;
-	border-left: 3px dashed blue;
-}
 .catch{
+	/* text-align: center; */
 	line-height: 55px;
 	color: black;
 	font-weight: 900;
-	font-size: 35px;
-	font-family: "Amatic SC";
+	font-size: 25px;
+	font-family: "Bungee Inline";
 	text-shadow: 2px 2px yellow;
 }
 
@@ -235,6 +226,7 @@ canvas {
 	height: 50px;
 	background-color: red;
 	padding: 0;
+	
 }
 #healthBar{
 	border: 1px solid yellow;
@@ -242,12 +234,27 @@ canvas {
 	height: 44px;
 	line-height: 50px;
 	padding-left: 10px;
-	/* text-shadow: 2px 2px blue; */
 }
 
+#shark-health-bg{
+	position: absolute;
+	margin-top: 530px;
+	margin-left: 30px;
+	height: 40px;
+	padding: 0;
+	width: 500px;
+}
 
-
-
+.sharkHealthPic{
+	background-image: url('shark.png');
+	width: 40px;
+	height: 40px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	display: inline-block;
+	border-radius: 50%;
+	border: 3px solid white;
+}
 
 
 
