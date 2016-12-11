@@ -150,18 +150,18 @@ addEventListener('keydown', function(event){keysDown[event.keyCode] = true;});
 addEventListener('keyup', function(event){delete keysDown[event.keyCode];});
 
 //fishCounter
-// var nemoCount = 30
-// var doryCount = 20
-// var stripeCount = 15
-// var jellyCount = 5
-// var puffCount = 5
-// var turtleCount = 1
-var nemoCount = 1
-var doryCount = 0
-var stripeCount = 0
-var jellyCount = 0
-var puffCount = 0
-var turtleCount = 0
+var nemoCount = 30
+var doryCount = 20
+var stripeCount = 15
+var jellyCount = 5
+var puffCount = 5
+var turtleCount = 1
+// var nemoCount = 1
+// var doryCount = 0
+// var stripeCount = 0
+// var jellyCount = 0
+// var puffCount = 0
+// var turtleCount = 0
 function countFish(){
 	if(gameOn){
 	document.getElementById('nemoCount').innerHTML = nemoCount
@@ -329,7 +329,7 @@ function moveMonster(){//before boss level
 	};
 	//monster10 = turtle 
 	if(monsters[9].relocate){
-		monsters[9].x = Math.floor(Math.random()*100 + 600);
+		monsters[9].x = Math.floor(Math.random()*700);
 		monsters[9].y =	Math.floor(Math.random()*480)
 		monsters[9].collision = false;
 		monsters[9].relocate = false;
