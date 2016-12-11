@@ -95,13 +95,17 @@ function changeLevel(){
 		turtleCount = level - 1
 		console.log(level)}
 	if(level===3){
-		backgroundImage.src = "background.png";
+		backgroundImage.src = "background3.jpg";
 		$('#fishBoxes').removeClass('hidden');
 		$('#health-bar-bg').addClass('hidden');
 		$('#healthBar').addClass('hidden');
+		$('#bossBoss').html('CATCH');
+		context.drawImage(monsters[9].icon, monsters[9].x, monsters[9].y);
 		if(restartTime){
 			startGame();
 			restartTime = false;
+			monsterSpeed = 1.5
+
 		}
 	}
 }
@@ -208,8 +212,8 @@ monsters.push(new Monster(leftSideX, bottomSideY, "puffer1.png", "puff"))//8
 monsters.push(new Monster(leftSideX, bottomSideY, "turtle1.png", "turtle"))//9
 monsters.push(new Monster(leftSideX, bottomSideY, "jellyfish1.png", "jelly"))//10
 monsters.push(new Monster(leftSideX, bottomSideY, "jellyfish1.png", "jelly"))//11
-monsters.push(new Monster(leftSideX+500, bottomSideY-100, "stripe1.png", "stripe"))//12
-monsters.push(new Monster(leftSideX+200, bottomSideY, "stripe1.png", "stripe"))//13
+monsters.push(new Monster(leftSideX+500, Math.floor(Math.random()*480), "stripe1.png", "stripe"))//12
+monsters.push(new Monster(leftSideX+200, Math.floor(Math.random()*480), "stripe1.png", "stripe"))//13
 monsters.push(new Monster(leftSideX, bottomSideY-200, "stripe1.png", "stripe"))//14
 monsters.push(new Monster(leftSideX, bottomSideY, "nemo5.png", "nemo"))//15
 monsters.push(new Monster(leftSideX-100, bottomSideY, "nemo5.png", "nemo"))//16
@@ -291,7 +295,7 @@ function moveMonster(){//before boss level
 	//monster8 = stripe1
 	if(monsters[7].relocate){
 		monsters[7].x = Math.floor(Math.random()*250);
-		monsters[7].y =	Math.floor(Math.random()*200) + 300;
+		monsters[7].y =	Math.floor(Math.random()*480);
 		monsters[7].collision = false;
 		monsters[7].relocate = false;
 	};
@@ -336,13 +340,13 @@ function moveMonster(){//before boss level
 	};	
 	if(monsters[13].relocate){
 		monsters[13].x = Math.floor(Math.random()*200);
-		monsters[13].y = Math.floor(Math.random()*201) + 300;
+		monsters[13].y = Math.floor(Math.random()*480)
 		monsters[13].collision = false;
 		monsters[13].relocate = false;
 	};
 	if(monsters[14].relocate){
 		monsters[14].x = Math.floor(Math.random()*200);
-		monsters[14].y = Math.floor(Math.random()*250) + 300;
+		monsters[14].y = Math.floor(Math.random()*480)
 		monsters[14].collision = false;
 		monsters[14].relocate = false;
 	};
@@ -552,7 +556,12 @@ function collideMissile(){
 	}}
 function drawMissile(){
 	for(var i = 0; i < missiles.length; i++){
-		context.drawImage(missiles[i].icon, missiles[i].x, missiles[i].y)
+		// if(damageDoneToBoss>3000){
+			context.drawImage(missiles[i].icon, missiles[i].x, missiles[i].y)
+		// }else{
+			// context.drawImage(missiles[0].icon, missiles[0].x, missiles[0].y)
+			// context.drawImage(missiles[1].icon, missiles[1].x, missiles[1].y)
+		// }		
 	}}
 var missileCounter = 0
 function fireMissile(){
@@ -569,8 +578,10 @@ function update(){
 	}else{moveMonster()}
 	getScore()		}
 function runBossLevel(){
-	backgroundImage.src = "background2.jpg";
+	if(level===2){
+	backgroundImage.src = "background2.jpg";}
 	hero.src = "shark-gun.png";
+	$('#bossBoss').html('BOSS')
 	fireBullet();
 	fireBullet2();
 	moveShell();
@@ -585,7 +596,6 @@ function runBossLevel(){
 	bulletCollideBoss();
 	$(document).ready(function(){
 		$('#fishBoxes').addClass('hidden')
-		$('#bossBoss').html('BOSS')
 		$('#health-bar-bg').removeClass('hidden')
 		$('#healthBar').removeClass('hidden')
 	});}
@@ -604,7 +614,7 @@ function draw(){
 		drawMissile();
 	}else{
 		drawMonster();
-		drawDeadFish();
+		drawDeadFish();		
 	}
 	requestAnimationFrame(draw);}
 draw();
