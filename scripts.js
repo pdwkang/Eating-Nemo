@@ -1,5 +1,5 @@
 //random variables
-var level = 9
+var level = 1
 var score = 0
 var highScore = 0;
 var gameOver = false;
