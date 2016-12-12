@@ -1,5 +1,5 @@
 //random variables
-var level = 1
+var level = 9
 var score = 0
 var highScore = 0;
 var gameOver = false;
@@ -18,7 +18,15 @@ var bulletLevel2 = true;
 var damageDoneToBoss = 0
 var pressF = true
 var restartTime = false;
+var startGameCounter = 15
 function startGame(){     //change time for boss level
+	startGameCounter = 0
+	$('#canvasDescription1').removeClass('hidden')}
+	
+function spaceToContinue(){
+	if(32 in keysDown){startGameCounter++};
+	if(startGameCounter === 1){
+		$('#canvasDescription1').addClass('hidden')
 	gameOn = true;
 	gameStart = Date.now();
 	gameEnd = Date.now() + 30000;
@@ -27,11 +35,22 @@ function startGame(){     //change time for boss level
 	$('#timer').removeClass('hidden')
 	heroLocation = {x: 310, y:200}
 	damageDoneToShark = 0;
-	$('#bossBoss').html('CATCH')
+	$('#bossBoss').html('EAT')
 	$('#fishBoxes').removeClass('hidden')
 	$('#health-bar-bg').addClass('hidden')
 	$('#shark-health-bg').addClass('hidden')
-}
+	$('#holdPlaceNemo').addClass('hidden')
+	$('#holdPlaceDory').addClass('hidden')
+	$('#holdPlaceStripe').addClass('hidden')
+	$('#holdPlaceJelly').addClass('hidden')
+	$('#holdPlacePuff').addClass('hidden')
+	$('#holdPlaceTurtle').addClass('hidden')
+	$('#nemo0').removeClass('hidden')
+	$('#dory0').removeClass('hidden')
+	$('#stripe0').removeClass('hidden')
+	$('#jellyfish0').removeClass('hidden')	
+	$('#puff0').removeClass('hidden')
+	$('#turtle0').removeClass('hidden')}}
 
 
 //canvas
@@ -51,22 +70,24 @@ function updateTimer(){
 		// $('#timer').html('GAME OVER')
 	}else{
 	document.getElementById('timer').innerHTML = 
-	`CATCH THEM ALL IN<br> <span class='mono'>${Math.round(timeDifference)}</span> SECONDS!`};
-	if((level===2)||(level===4)||(level===6)||(level===8)){document.getElementById('timer').innerHTML =
-	`${playerName} !! KILL THE BOSS !!`}
+	`EAT THEM ALL IN<br> <span class='mono'>${Math.round(timeDifference)}</span> SECONDS!`};
+	
 	}
 function displayLevel(){
-	$('#displayLevel').html('LEVEL '+level)
-}
+	$('#displayLevel').html('LEVEL '+level)}
 function setGameOver(){
-	if((timeDifference === 0)||(damageDoneToShark>=6)){
+	if((timeDifference === 0)||(damageDoneToShark>=6)||(level===11)){
+		if(level===11){
+			hero.src = "you-win.png";
+		}else{hero.src="game-over.png"}
 		$('#hideWhenGameStarts').removeClass('hidden');
 		$('#timer').addClass('hidden')
 		gameOn = false;
 		gameOver = false;
 		level = 1
 		backgroundImage.src="background.png"
-		hero.src="game-over.png"
+		
+		boss1.src="boss.png"
 		// heroLocation = {x: 130, y: 200}
 		score = 0
 		turtleDirectionX = 2; 	 //bounce off walls
@@ -88,9 +109,24 @@ function setGameOver(){
 		puffCount = 5
 		turtleCount = 1
 	}}
+	var fCounter = 5
 function changeLevel(){
+	if(!nemoCount){$('#nemo0').addClass('hidden');{$('#holdPlaceNemo').removeClass('hidden')}}
+	if(!doryCount){$('#dory0').addClass('hidden');{$('#holdPlaceDory').removeClass('hidden')}}
+	if(!stripeCount){$('#stripe0').addClass('hidden'); {$('#holdPlaceStripe').removeClass('hidden')}}
+	if(!jellyCount){$('#jellyfish0').addClass('hidden');{$('#holdPlaceJelly').removeClass('hidden')}}		
+	if(!puffCount){$('#puff0').addClass('hidden');{$('#holdPlacePuff').removeClass('hidden')}}
+	if(!turtleCount){$('#turtle0').addClass('hidden');{$('#holdPlaceTurtle').removeClass('hidden')}}	
+
 	if((!nemoCount)&&(!doryCount)&&(!stripeCount)&&
-		(!jellyCount)&&(!puffCount)&&(!turtleCount)){
+		(!jellyCount)&&(!puffCount)&&(!turtleCount)){fCounter = 0;
+		clearInterval(timerInterval);
+		$('#canvasDescription2').removeClass('hidden')}
+	if(32 in keysDown){fCounter++
+		$('#canvasDescription2').addClass('hidden')}
+	if(fCounter === 1){
+		for(var i = 0; i < missiles.length; i++){
+			missiles[i].x = Math.floor(Math.random()*100 + 600)}
 		$("#shark-health-bg").removeClass('hidden')
 		$('#live6').removeClass('hidden')
 		$('#live5').removeClass('hidden')
@@ -99,19 +135,20 @@ function changeLevel(){
 		$('#live2').removeClass('hidden')
 		$('#live1').removeClass('hidden')
 		level++
-		nemoCount = Math.floor(level*3.5 + 23)
-		doryCount = Math.floor(level*1.3 + 20)
-		stripeCount = Math.floor(level*1.3 + 15)
+		nemoCount = Math.floor(level*5 + 23)
+		doryCount = Math.floor(level*1 + 20)
+		stripeCount = Math.floor(level*2 + 15)
 		jellyCount = level + 4
 		puffCount = level + 4
 		turtleCount = level - 1
 		// monsterSpeed = level 1.5
 		console.log(level)}
+	
 	if((level===3)||(level===5)||(level===7)||(level===9)){
 		backgroundImage.src = "background3.jpg";
 		$('#fishBoxes').removeClass('hidden');
 		$('#health-bar-bg').addClass('hidden');
-		$('#bossBoss').html('CATCH');
+		$('#bossBoss').html('EAT');
 
 		if(restartTime){
 			startGame();
@@ -119,8 +156,20 @@ function changeLevel(){
 		}
 	}}
 function bossDead(){
-	if(damageDoneToBoss>5000){
+	if(damageDoneToBoss>=5000){
 		level++;
+	{$('#holdPlaceNemo').addClass('hidden')}
+	{$('#holdPlaceDory').addClass('hidden')}
+	{$('#holdPlaceStripe').addClass('hidden')}
+	{$('#holdPlaceJelly').addClass('hidden')}		
+	{$('#holdPlacePuff').addClass('hidden')}
+	{$('#holdPlaceTurtle').addClass('hidden')}
+	{$('#nemo0').removeClass('hidden')}
+	{$('#dory0').removeClass('hidden')}
+	{$('#stripe0').removeClass('hidden')}
+	{$('#jellyfish0').removeClass('hidden')}		
+	{$('#puff0').removeClass('hidden')}
+	{$('#turtle0').removeClass('hidden')}
 		timeDifference = 30;
 		damageDoneToBoss=0;
 		restartTime = true;
@@ -141,7 +190,11 @@ function getScore(){
 	document.getElementById('score').innerHTML =
 	 `&nbsp &nbsp &nbsp &nbsp SCORE: <span class='color-3'>${score}</span>    
 	 &nbsp &nbsp &nbsp &nbsp HIGH SCORE: 
-	 <span class='color-h'>${highScore}</span> `;}	
+	 <span class='color-h'>${highScore}</span> `;
+	if((level===2)||(level===4)||(level===6)||(level===8)||(level===10)){document.getElementById('timer').innerHTML =
+	`${playerName} !! KILL THE BOSS !!`}
+	}	
+
 // ${playerName}
 
 //save keys into an array
@@ -181,9 +234,9 @@ function moveHero(){
 		}else if(keysDown[37]){hero.src="shark-left.png";
 		}else{hero.src="shark.png";}}
 
-	if((gameOn)&&((level!==2)||(level!==4)||(level!==6)||(level!==8))
+	if((gameOn)&&((level!==2)||(level!==4)||(level!==6)||(level!==8)||(level!==10))
 		&&(39 in keysDown)&&(heroLocation.x < 601)){heroLocation.x += (6*hsp);  //right
-	}else if(((level===2)||(level===4)||(level===6)||(level===8))&&
+	}else if(((level===2)||(level===4)||(level===6)||(level===8)||(level===10))&&
 		(39 in keysDown)&&(heroLocation.x < 200)){heroLocation.x += (6*hsp);}; 
 	if((37 in keysDown)&&(heroLocation.x > 5)){heroLocation.x -= (6*hsp);};    //left
 	if((38 in keysDown)&&(heroLocation.y > 5)){heroLocation.y -= (6*hsp);};     //up
@@ -196,8 +249,16 @@ function drawHero(){
 var boss1 = new Image();			boss1.src = "boss.png";
 var boss1Location = {x: 555, y: 250}
 var bossSpeed = 1
-function moveBoss(){
-	if(level>5){bossSpeed = 2}
+function moveBoss(){	
+	if(level===10){bossSpeed = 3;
+		boss1.src = 'boss3.png'
+		for(var i=0; i<missiles.length; i++){
+			missiles[i].icon.src = "missile3.png"}
+	}else if(level>5){bossSpeed = 2;
+		boss1.src = 'boss2.png'
+		for(var i=0; i<missiles.length; i++){
+			missiles[i].icon.src = "missile2.png"}
+	}
 	boss1Location.x -= (1.5*bossX);
 	boss1Location.y -= (2*bossY*bossSpeed);
 	if(boss1Location.x >=450){bossX = 1};		
@@ -345,13 +406,13 @@ function moveMonster(){//before boss level
 	};
 	if(monsters[11].relocate){
 		monsters[11].x = Math.floor(Math.random()*310) + 400;
-		monsters[11].y = Math.floor(Math.random()*300) + 280;
+		monsters[11].y = Math.floor(Math.random()*200) + 280;
 		monsters[11].collision = false;
 		monsters[11].relocate = false;
 	};
 	if(monsters[12].relocate){
 		monsters[12].x = Math.floor(Math.random()*200);
-		monsters[12].y = Math.floor(Math.random()*250) + 300;
+		monsters[12].y = Math.floor(Math.random()*150) + 350;
 		monsters[12].collision = false;
 		monsters[12].relocate = false;
 	};	
@@ -362,7 +423,7 @@ function moveMonster(){//before boss level
 		monsters[13].relocate = false;
 	};
 	if(monsters[14].relocate){
-		monsters[14].x = Math.floor(Math.random()*200);
+		monsters[14].x = Math.floor(Math.random()*550);
 		monsters[14].y = Math.floor(Math.random()*480)
 		monsters[14].collision = false;
 		monsters[14].relocate = false;
@@ -374,7 +435,7 @@ function moveMonster(){//before boss level
 		monsters[15].relocate = false;
 	};
 	if(monsters[16].relocate){
-		monsters[16].x = Math.floor(Math.random()*300) + 400;
+		monsters[16].x = Math.floor(Math.random()*320) + 380;
 		monsters[16].y =	Math.floor(Math.random()*200);
 		monsters[16].collision = false;
 		monsters[16].relocate = false;
@@ -386,8 +447,8 @@ function moveMonster(){//before boss level
 		monsters[17].relocate = false;
 	};
 	if(monsters[18].relocate){
-		monsters[18].x = Math.floor(Math.random()*300) + 400;
-		monsters[18].y = Math.floor(Math.random()*200);
+		monsters[18].x = Math.floor(Math.random()*315) + 400;
+		monsters[18].y = Math.floor(Math.random()*220);
 		monsters[18].collision = false;
 		monsters[18].relocate = false;
 	};
@@ -408,13 +469,13 @@ function updateMonsterSpeed(){
 	monsters[6].x -= 2*monsterSpeed; 	monsters[6].y += .3*monsterSpeed;
 	monsters[7].x += 1.5*monsterSpeed; 	monsters[7].y -= .6*monsterSpeed;
 	monsters[8].x -= 1*monsterSpeed;	monsters[8].y -= .3*monsterSpeed;
-	monsters[9].x -= .3*monsterSpeed; 
+	monsters[9].x -= 1.3*monsterSpeed; 
 	monsters[9].y += .2*monsterSpeed;
 	monsters[10].x += 1*monsterSpeed*starfishDirectionX;
 	monsters[10].y = 422;
-	monsters[11].x += .5*monsterSpeed; monsters[11].y -= .6*monsterSpeed;
+	monsters[11].x += .5*monsterSpeed; 	monsters[11].y -= .6*monsterSpeed;
 	monsters[12].x += .8*monsterSpeed; 	monsters[12].y -= .6*monsterSpeed;
-	monsters[13].x += 1.7*monsterSpeed; 	monsters[13].y -= .6*monsterSpeed;
+	monsters[13].x += 1.7*monsterSpeed; monsters[13].y -= .6*monsterSpeed;
 	monsters[14].x += .4*monsterSpeed; 	monsters[14].y -= 1.6*monsterSpeed;
 	monsters[15].x -= 1.5*monsterSpeed;	monsters[15].y += 1.4*monsterSpeed;
 	monsters[16].x -= 2.5*monsterSpeed;	monsters[16].y += .7*monsterSpeed;
@@ -423,7 +484,24 @@ function updateMonsterSpeed(){
 	monsters[19].x -= 1.2*monsterSpeed;	monsters[19].y -= .1*monsterSpeed;}
 function drawMonster(){
 	for(var i = 0; i<monsters.length; i++){
-	 	context.drawImage(monsters[i].icon, monsters[i].x, monsters[i].y);	
+			if((monsters[i].type === "nemo")&&(nemoCount>0)){
+				context.drawImage(monsters[i].icon, monsters[i].x, monsters[i].y);
+				context.drawImage(deadFishArray[i].icon, deadFishArray[i].x, deadFishArray[i].y)}
+			if((monsters[i].type === "dory")&&(doryCount>0)){
+				context.drawImage(monsters[i].icon, monsters[i].x, monsters[i].y);
+				context.drawImage(deadFishArray[i].icon, deadFishArray[i].x, deadFishArray[i].y)}
+			if((monsters[i].type === "stripe")&&(stripeCount>0)){
+				context.drawImage(monsters[i].icon, monsters[i].x, monsters[i].y);
+				context.drawImage(deadFishArray[i].icon, deadFishArray[i].x, deadFishArray[i].y)};
+			if((monsters[i].type === "turtle")&&(turtleCount>0)){
+				context.drawImage(monsters[i].icon, monsters[i].x, monsters[i].y);
+				context.drawImage(deadFishArray[i].icon, deadFishArray[i].x, deadFishArray[i].y)};
+			if((monsters[i].type === "puff")&&(puffCount>0)){
+				context.drawImage(monsters[i].icon, monsters[i].x, monsters[i].y);
+				context.drawImage(deadFishArray[i].icon, deadFishArray[i].x, deadFishArray[i].y)};
+			if((monsters[i].type === "jelly")&&(jellyCount>0)){
+				context.drawImage(monsters[i].icon, monsters[i].x, monsters[i].y);
+				context.drawImage(deadFishArray[i].icon, deadFishArray[i].x, deadFishArray[i].y)};
 	}}
 
 //deadfish
@@ -439,9 +517,9 @@ function moveDeadFish(){
 	for(var i = 0; i<monsters.length; i++){
 		deadFishArray[i].y += deadFishSpeed
 	}}
-function drawDeadFish(){
-	for(var i = 0; i<monsters.length; i++){
-		context.drawImage(deadFishArray[i].icon, deadFishArray[i].x, deadFishArray[i].y)}}
+function drawDeadFish(){}
+	// for(var i = 0; i<monsters.length; i++){
+	// 	context.drawImage(deadFishArray[i].icon, deadFishArray[i].x, deadFishArray[i].y)}}
 
 //shells
 var shells = [];
@@ -478,30 +556,11 @@ function fireBullet(){
 		bullets[bulletCounter].x = heroLocation.x+80
 		bullets[bulletCounter].y = heroLocation.y+33;
 		bulletCounter++;
-	// 	pressF = false;
-	// }
-	// if((68 in keysDown)&&(!pressF)){
-	// 	if(bulletCounter > 98){bulletCounter = 0};
-	// 	bullets[bulletCounter].x = heroLocation.x+80
-	// 	bullets[bulletCounter].y = heroLocation.y+33;
-	// 	bulletCounter++;
-	// 	pressF = true;	
 	}}
 function fireBullet2(){
 	if((70 in keysDown)&&(pressF)){
-		// if(bulletCounter >= 98){bulletCounter = 0};
-
-		// if((bulletCounter+50) > 98){(bulletCounter+50) = 0};
 		bullets[(bulletCounter+50)].x = heroLocation.x+80
 		bullets[(bulletCounter+50)].y = heroLocation.y+45;
-	// 	pressF = false;
-	// }
-	// if((68 in keysDown)&&(!pressF)){
-	// 	if(bulletCounter2 > 98){bulletCounter2 = 0};
-	// 	bullets[bulletCounter2].x = heroLocation.x+80
-	// 	bullets[bulletCounter2].y = heroLocation.y+45;
-	// 	bulletCounter2++;
-	// 	pressF = true;	
 	}}
 var healthBarWidth
 function bulletCollideBoss(){
@@ -511,7 +570,7 @@ function bulletCollideBoss(){
 		&& (bullets[i].y <= boss1Location.y + 150)
 		&& (bullets[i].x >= boss1Location.x - 45)
 		&& (bullets[i].y >= boss1Location.y + 50)){
-			damageDoneToBoss += 3;
+			damageDoneToBoss += (10-level/2);
 			bullets[i].x = 800;
 			bullets[i].y = 520;
 			healthBarWidth = 100-(damageDoneToBoss/50)
@@ -538,23 +597,20 @@ Missile.prototype.icon = new Image();
 Missile.prototype.icon.src = "missile.png"
 for(var i = 0; i < 7; i++){missiles.push(new Missile(i * 125))};
 function moveMissile(){
-	// for(var i = 0; i<missiles.length; i++){
-		// missiles[i].x -= missileSpeedX
-	// }
 	missiles[0].x -= (missileSpeedX * 1.4 + level/3)
-	missiles[1].x -= (missileSpeedX * 1.7 + level/3)
-	missiles[2].x -= (missileSpeedX * 1.5 + level/3)
-	missiles[3].x -= (missileSpeedX * 1.2 + level/2)
+	missiles[1].x -= (missileSpeedX * 2.7 + level/3)
+	missiles[2].x -= (missileSpeedX * 2 + level/3)
+	missiles[3].x -= (missileSpeedX * 1 + level/2)
 	if(level>5){missiles[4].x -= (missileSpeedX * 1.1 + level/2)
-	missiles[5].x -= (missileSpeedX * 1.2 + level/2)
-	missiles[6].x -= (missileSpeedX * 1.1 + level/2)}
+		missiles[5].x -= (missileSpeedX * 1.2 + level/2)
+		missiles[6].x -= (missileSpeedX * 1.1 + level/2)}
 	missiles[0].y += missileSpeedX * -0.2
 	missiles[1].y -= missileSpeedX * 0.4
 	missiles[2].y += missileSpeedX * 0.5
 	missiles[3].y -= missileSpeedX * -0.6
 	if(level>5){missiles[4].y += missileSpeedX * 0.3
-	missiles[5].y -= missileSpeedX * 0.5
-	missiles[6].y += missileSpeedX * 0.7};}
+		missiles[5].y -= missileSpeedX * 0.5
+		missiles[6].y += missileSpeedX * 0.7};}
 function fireMissile(){
 	for(var i =0; i<missiles.length; i++){
 		missiles[i].x = boss1Location.x;
@@ -606,12 +662,12 @@ function update(){
 	countFish()
 	moveHero();
 	moveDeadFish();
-	changeLevel();
-	if((level===2)||(level===4)||(level===6)||(level===8)){runBossLevel()
+	if((level===2)||(level===4)||(level===6)||(level===8)||(level===10)){runBossLevel()
 	}else{moveMonster()}
 	getScore()		}
 function runBossLevel(){
-	backgroundImage.src = "background2.jpg";
+	if(level>5){backgroundImage.src = "background4.jpg";
+	}else{backgroundImage.src = "background2.jpg";}	
 	hero.src = "shark-gun.png";
 	$('#bossBoss').html('BOSS')
 	fireBullet();
@@ -632,14 +688,15 @@ function runBossLevel(){
 		$('#healthBar').removeClass('hidden')
 	});}
 function draw(){
+	spaceToContinue();
 	displayLevel();
 	bossDead();
 	setGameOver();
 	update();
 	context.drawImage(backgroundImage, 0, 0);
-	drawHero();	
+	if(startGameCounter>0){drawHero();}	
 	updateMonsterSpeed();
-	if((level===2)||(level===4)||(level===6)||(level===8)){
+	if((level===2)||(level===4)||(level===6)||(level===8)||(level===10)){
 		drawBoss();
 		drawShell();
 		drawBullets();
@@ -649,6 +706,7 @@ function draw(){
 		drawMonster();
 		drawDeadFish();		
 	}
+	changeLevel();
 	requestAnimationFrame(draw);}
 draw();
 

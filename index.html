@@ -13,7 +13,8 @@
 	<style>@import 'https://fonts.googleapis.com/css?family=Monda';</style>
 	<style>@import 'https://fonts.googleapis.com/css?family=Bungee+Inline';</style>
 	<style>@import 'https://fonts.googleapis.com/css?family=Faster+One';</style>
-	<style>@import 'https://fonts.googleapis.com/css?family=Chela+One';</style>			
+	<style>@import 'https://fonts.googleapis.com/css?family=Chela+One';</style>	
+	<style>@import 'https://fonts.googleapis.com/css?family=Bubblegum+Sans';</style>				
 </head>
 
 
@@ -29,6 +30,7 @@
 	N<span class="color-e">e</span>m<span class="color-e">o</span>
 	<img src='shark-left.png'>
 </div>
+
 
 
 
@@ -54,15 +56,12 @@
 	<div class="col-sm-5 arrow-keys"></div>
 
 	<div class="col-sm-12 game-description">
-		FISH: 100 POINTS &nbsp &nbsp &nbsp BOSS: 5000 POINTS
 	</div>
 
-<!-- 	<div class="col-sm-12 text-center" id="displayLevel">
-		Level 1
+	<div class="col-sm-12 level10">
+		FINAL BOSS AT LEVEL 10
 	</div>
-	<div class="col-sm-12 text-center" id="displayPlayer">
-		Shark: Bruce
-	</div> -->
+
 </div>	
 
 
@@ -80,7 +79,7 @@
 
 <!-- timer comes on when press start -->
 <div class="hidden" id="timer">
-	CATCH THEM ALL IN<br> 
+	EAT THEM ALL IN<br> 
 	<span class='mono'>30</span> SECONDS!
 </div>
 <div>
@@ -96,7 +95,7 @@
 
 <!-- bottom blue box -->
 <div class="fishCount">
-	<div id="bossBoss" class="col-sm-1 catch">CATCH</div>
+	<div id="bossBoss" class="col-sm-1 catch">EAT</div>
  
 	<!-- hidden health bar -->
 	<div id="health-bar-bg" class="col-sm-11 hidden">
@@ -105,19 +104,69 @@
 
 	<!-- non boss levels fish boxes -->
 	<div id="fishBoxes" class="col-sm-11 fish-box">
-		<div class="col-sm-1 fish-pic nemo-pic">x</div>
-		<div class="col-sm-1 fish-box" id="nemoCount">30</div>
-		<div class="col-sm-1 fish-pic dory-pic">x</div>
-		<div class="col-sm-1 fish-box" id="doryCount">20</div>
-		<div class="col-sm-1 fish-pic stripe-pic">x</div>
-		<div class="col-sm-1 fish-box" id="stripeCount">15</div>
-		<div class="col-sm-1 fish-pic jellyfish-pic">x</div>
-		<div class="col-sm-1 fish-box" id="jellyCount">5</div>
-		<div class="col-sm-1 fish-pic puff-pic">x</div>
-		<div class="col-sm-1 fish-box" id="puffCount">5</div>
-		<div class="col-sm-1 fish-pic turtle-pic">x</div>
-		<div class="col-sm-1 fish-box" id="turtleCount">1</div>
+		<div id='holdPlaceNemo' class="hidden col-sm-2"></div>
+		<div id='nemo0'>
+			<div class="col-sm-1 fish-pic nemo-pic">x</div>
+			<div class="col-sm-1 fish-box" id="nemoCount">30</div>
+		</div>
+
+		<div id='holdPlaceDory' class="hidden col-sm-2"></div>
+		<div id="dory0" class="width100">
+			<div class="col-sm-1 fish-pic dory-pic">x</div>
+			<div class="col-sm-1 fish-box" id="doryCount">20</div>
+		</div>
+
+		<div id='holdPlaceStripe' class="hidden col-sm-2"></div>
+		<div id="stripe0" class="width100">
+			<div class="col-sm-1 fish-pic stripe-pic">x</div>
+			<div class="col-sm-1 fish-box" id="stripeCount">15</div>
+		</div>
+
+		<div id='holdPlaceJelly' class="hidden col-sm-2"></div>
+		<div id="jellyfish0" class="width100">
+			<div class="col-sm-1 fish-pic jellyfish-pic">x</div>
+			<div class="col-sm-1 fish-box" id="jellyCount">5</div>
+		</div>
+
+		<div id='holdPlacePuff' class="hidden col-sm-2"></div>
+		<div id="puff0" class="width100">
+			<div class="col-sm-1 fish-pic puff-pic">x</div>
+			<div class="col-sm-1 fish-box" id="puffCount">5</div>
+		</div>
+
+		<div id='holdPlaceTurtle' class="hidden col-sm-2"></div>
+		<div id="turtle0" class="width100">
+			<div class="col-sm-1 fish-pic turtle-pic">x</div>
+			<div class="col-sm-1 fish-box" id="turtleCount">1</div>
+		</div>
+
 	</div>
+</div>
+
+<div id="canvasDescription1" class="hidden">
+	MOVE WITH <span class="keyInCanvasDescription">'ARROW KEYS'</span><br><br>
+	PRESS 
+	<span class="keyInCanvasDescription">'E'</span> TO EAT ALL THE<br>FISH LISTED BELOW <br>
+	IN <span class="color-w">30 SECONDS</span><br><br>
+	PRESS 
+	<span class="keyInCanvasDescription">'SPACE-BAR'</span> TO CONTINUE
+</div>
+
+<div id="canvasDescription2" class="hidden">
+	PRESS 
+	<span class="keyInCanvasDescription">'F'</span> TO FIRE
+	BULLETS<br>AT THE BOSS.<br>
+	EACH TIME YOU GET HIT BY BOSS<br>
+	YOU LOSE A SHARK LIFE<br> 
+	<div class="sharkHealthPic" id="live6"></div>
+	<div class="sharkHealthPic" id="live5"></div>
+	<div class="sharkHealthPic" id="live4"></div>
+	<div class="sharkHealthPic" id="live3"></div>
+	<div class="sharkHealthPic" id="live2"></div>
+	<div class="sharkHealthPic" id="live1"></div>
+	<br><br>
+	PRESS 
+	<span class="keyInCanvasDescription">'SPACE-BAR'</span> TO CONTINUE
 </div>
 
 </body>
