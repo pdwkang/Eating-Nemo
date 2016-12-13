@@ -135,10 +135,10 @@ function changeLevel(){
 		$('#live2').removeClass('hidden')
 		$('#live1').removeClass('hidden')
 		level++
-		nemoCount = Math.floor(level*5 + 23)
-		doryCount = Math.floor(level*1 + 20)
-		stripeCount = Math.floor(level*2 + 15)
-		jellyCount = level + 4
+		nemoCount = Math.floor(level*4 + 23)
+		doryCount = Math.floor(level*1.5 + 15)
+		stripeCount = Math.floor(level*1.5 + 15)
+		jellyCount = level + 3
 		puffCount = level + 4
 		turtleCount = level - 1
 		// monsterSpeed = level 1.5
@@ -250,14 +250,22 @@ var boss1 = new Image();			boss1.src = "boss.png";
 var boss1Location = {x: 555, y: 250}
 var bossSpeed = 1
 function moveBoss(){	
-	if(level===10){bossSpeed = 3;
-		boss1.src = 'boss3.png'
-		for(var i=0; i<missiles.length; i++){
-			missiles[i].icon.src = "missile3.png"}
-	}else if(level>5){bossSpeed = 2;
-		boss1.src = 'boss2.png'
-		for(var i=0; i<missiles.length; i++){
-			missiles[i].icon.src = "missile2.png"}
+	if(level===4){bossSpeed = 2;
+		boss1.src = 'boss2.png';
+		backgroundImage.src = "background4.jpg"
+		for(var i=0; i<missiles.length; i++){missiles[i].icon.src = "missile2.png"}
+	}else if(level===6){bossSpeed = 3;
+		boss1.src = 'boss.png';
+		backgroundImage.src = "background2.jpg"
+		for(var i=0; i<missiles.length; i++){missiles[i].icon.src = "missile.png"}
+	}else if(level===8){bossSpeed = 4;
+		boss1.src = 'boss2.png';
+		backgroundImage.src = "background4.jpg"
+		for(var i=0; i<missiles.length; i++){missiles[i].icon.src = "missile2.png"}
+	}else if(level===10){bossSpeed = 5;
+		boss1.src = 'boss3.png';
+		backgroundImage.src = "background4.jpg"
+		for(var i=0; i<missiles.length; i++){missiles[i].icon.src = "missile3.png"}
 	}
 	boss1Location.x -= (1.5*bossX);
 	boss1Location.y -= (2*bossY*bossSpeed);
@@ -570,7 +578,7 @@ function bulletCollideBoss(){
 		&& (bullets[i].y <= boss1Location.y + 150)
 		&& (bullets[i].x >= boss1Location.x - 45)
 		&& (bullets[i].y >= boss1Location.y + 50)){
-			damageDoneToBoss += (10-level/2);
+			damageDoneToBoss += (9-level/2);
 			bullets[i].x = 800;
 			bullets[i].y = 520;
 			healthBarWidth = 100-(damageDoneToBoss/50)
@@ -666,8 +674,7 @@ function update(){
 	}else{moveMonster()}
 	getScore()		}
 function runBossLevel(){
-	if(level>5){backgroundImage.src = "background4.jpg";
-	}else{backgroundImage.src = "background2.jpg";}	
+	if(level===2){backgroundImage.src = "background2.jpg"}
 	hero.src = "shark-gun.png";
 	$('#bossBoss').html('BOSS')
 	fireBullet();
