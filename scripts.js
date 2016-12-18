@@ -21,36 +21,10 @@ var restartTime = false;
 var startGameCounter = 15
 function startGame(){     //change time for boss level
 	startGameCounter = 0
-	$('#canvasDescription1').removeClass('hidden')}
+	document.getElementById('canvasDescription1').className -= "hidden"
+}
 	
-function spaceToContinue(){
-	if(32 in keysDown){startGameCounter++};
-	if(startGameCounter === 1){
-		$('#canvasDescription1').addClass('hidden')
-	gameOn = true;
-	gameStart = Date.now();
-	gameEnd = Date.now() + 30000;
-	timerInterval = setInterval(updateTimer, 1000);
-	$('#hideWhenGameStarts').addClass('hidden');
-	$('#timer').removeClass('hidden')
-	heroLocation = {x: 310, y:200}
-	damageDoneToShark = 0;
-	$('#bossBoss').html('EAT')
-	$('#fishBoxes').removeClass('hidden')
-	$('#health-bar-bg').addClass('hidden')
-	$('#shark-health-bg').addClass('hidden')
-	$('#holdPlaceNemo').addClass('hidden')
-	$('#holdPlaceDory').addClass('hidden')
-	$('#holdPlaceStripe').addClass('hidden')
-	$('#holdPlaceJelly').addClass('hidden')
-	$('#holdPlacePuff').addClass('hidden')
-	$('#holdPlaceTurtle').addClass('hidden')
-	$('#nemo0').removeClass('hidden')
-	$('#dory0').removeClass('hidden')
-	$('#stripe0').removeClass('hidden')
-	$('#jellyfish0').removeClass('hidden')	
-	$('#puff0').removeClass('hidden')
-	$('#turtle0').removeClass('hidden')}}
+
 
 
 //canvas
@@ -110,74 +84,8 @@ function setGameOver(){
 		turtleCount = 1
 	}}
 	var fCounter = 5
-function changeLevel(){
-	if(!nemoCount){$('#nemo0').addClass('hidden');{$('#holdPlaceNemo').removeClass('hidden')}}
-	if(!doryCount){$('#dory0').addClass('hidden');{$('#holdPlaceDory').removeClass('hidden')}}
-	if(!stripeCount){$('#stripe0').addClass('hidden'); {$('#holdPlaceStripe').removeClass('hidden')}}
-	if(!jellyCount){$('#jellyfish0').addClass('hidden');{$('#holdPlaceJelly').removeClass('hidden')}}		
-	if(!puffCount){$('#puff0').addClass('hidden');{$('#holdPlacePuff').removeClass('hidden')}}
-	if(!turtleCount){$('#turtle0').addClass('hidden');{$('#holdPlaceTurtle').removeClass('hidden')}}	
 
-	if((!nemoCount)&&(!doryCount)&&(!stripeCount)&&
-		(!jellyCount)&&(!puffCount)&&(!turtleCount)){fCounter = 0;
-		clearInterval(timerInterval);
-		$('#canvasDescription2').removeClass('hidden')}
-	if(32 in keysDown){fCounter++
-		$('#canvasDescription2').addClass('hidden')}
-	if(fCounter === 1){
-		for(var i = 0; i < missiles.length; i++){
-			missiles[i].x = Math.floor(Math.random()*100 + 600)}
-		$("#shark-health-bg").removeClass('hidden')
-		$('#live6').removeClass('hidden')
-		$('#live5').removeClass('hidden')
-		$('#live4').removeClass('hidden')
-		$('#live3').removeClass('hidden')	
-		$('#live2').removeClass('hidden')
-		$('#live1').removeClass('hidden')
-		level++
-		nemoCount = Math.floor(level*4 + 23)
-		doryCount = Math.floor(level*1.5 + 15)
-		stripeCount = Math.floor(level*1.5 + 15)
-		jellyCount = level + 3
-		puffCount = level + 4
-		turtleCount = level - 1
-		// monsterSpeed = level 1.5
-		console.log(level)}
-	
-	if((level===3)||(level===5)||(level===7)||(level===9)){
-		backgroundImage.src = "background3.jpg";
-		$('#fishBoxes').removeClass('hidden');
-		$('#health-bar-bg').addClass('hidden');
-		$('#bossBoss').html('EAT');
 
-		if(restartTime){
-			startGame();
-			restartTime = false;
-		}
-	}}
-function bossDead(){
-	if(damageDoneToBoss>=5000){
-		level++;
-	{$('#holdPlaceNemo').addClass('hidden')}
-	{$('#holdPlaceDory').addClass('hidden')}
-	{$('#holdPlaceStripe').addClass('hidden')}
-	{$('#holdPlaceJelly').addClass('hidden')}		
-	{$('#holdPlacePuff').addClass('hidden')}
-	{$('#holdPlaceTurtle').addClass('hidden')}
-	{$('#nemo0').removeClass('hidden')}
-	{$('#dory0').removeClass('hidden')}
-	{$('#stripe0').removeClass('hidden')}
-	{$('#jellyfish0').removeClass('hidden')}		
-	{$('#puff0').removeClass('hidden')}
-	{$('#turtle0').removeClass('hidden')}
-		timeDifference = 30;
-		damageDoneToBoss=0;
-		restartTime = true;
-		for(var i = 0; i<5000; i++){
-			score++;
-			healthBarWidth = 99.8
-		}
-	}}
 function newPlayer(){
 	playerNameDiv = document.getElementById("player-name");
 	playerName = playerNameDiv.value;
@@ -649,6 +557,31 @@ function collideMissile(){
 			// missiles[i].icon.src ="missile.png"
 		}
 	}}
+
+function bossDead(){
+	if(damageDoneToBoss>=5000){
+		level++;
+	{$('#holdPlaceNemo').addClass('hidden')}
+	{$('#holdPlaceDory').addClass('hidden')}
+	{$('#holdPlaceStripe').addClass('hidden')}
+	{$('#holdPlaceJelly').addClass('hidden')}		
+	{$('#holdPlacePuff').addClass('hidden')}
+	{$('#holdPlaceTurtle').addClass('hidden')}
+	{$('#nemo0').removeClass('hidden')}
+	{$('#dory0').removeClass('hidden')}
+	{$('#stripe0').removeClass('hidden')}
+	{$('#jellyfish0').removeClass('hidden')}		
+	{$('#puff0').removeClass('hidden')}
+	{$('#turtle0').removeClass('hidden')}
+		timeDifference = 30;
+		damageDoneToBoss=0;
+		restartTime = true;
+		for(var i = 0; i<5000; i++){
+			score++;
+			healthBarWidth = 99.8
+		}
+	}}
+
 function drawMissile(){
 	for(var i = 0; i < missiles.length; i++){
 		// if(damageDoneToBoss>3000){
@@ -665,6 +598,34 @@ function fireMissile(){
 	missiles[missileCounter].y = boss1Location.y;
 	missileCounter++;}
 
+function spaceToContinue(){
+	if(32 in keysDown){startGameCounter++};
+	if(startGameCounter === 1){
+	$('#canvasDescription1').addClass('hidden')
+	gameOn = true;
+	gameStart = Date.now();
+	gameEnd = Date.now() + 30000;
+	timerInterval = setInterval(updateTimer, 1000);
+	$('#hideWhenGameStarts').addClass('hidden');
+	$('#timer').removeClass('hidden')
+	heroLocation = {x: 310, y:200}
+	damageDoneToShark = 0;
+	$('#bossBoss').html('EAT')
+	$('#fishBoxes').removeClass('hidden')
+	$('#health-bar-bg').addClass('hidden')
+	$('#shark-health-bg').addClass('hidden')
+	$('#holdPlaceNemo').addClass('hidden')
+	$('#holdPlaceDory').addClass('hidden')
+	$('#holdPlaceStripe').addClass('hidden')
+	$('#holdPlaceJelly').addClass('hidden')
+	$('#holdPlacePuff').addClass('hidden')
+	$('#holdPlaceTurtle').addClass('hidden')
+	$('#nemo0').removeClass('hidden')
+	$('#dory0').removeClass('hidden')
+	$('#stripe0').removeClass('hidden')
+	$('#jellyfish0').removeClass('hidden')	
+	$('#puff0').removeClass('hidden')
+	$('#turtle0').removeClass('hidden')}}
 //draw and update
 function update(){
 	countFish()
@@ -693,7 +654,54 @@ function runBossLevel(){
 		$('#fishBoxes').addClass('hidden')
 		$('#health-bar-bg').removeClass('hidden')
 		$('#healthBar').removeClass('hidden')
+
 	});}
+function changeLevel(){
+	if(!nemoCount){$('#nemo0').addClass('hidden');{$('#holdPlaceNemo').removeClass('hidden')}}
+	if(!doryCount){$('#dory0').addClass('hidden');{$('#holdPlaceDory').removeClass('hidden')}}
+	if(!stripeCount){$('#stripe0').addClass('hidden'); {$('#holdPlaceStripe').removeClass('hidden')}}
+	if(!jellyCount){$('#jellyfish0').addClass('hidden');{$('#holdPlaceJelly').removeClass('hidden')}}		
+	if(!puffCount){$('#puff0').addClass('hidden');{$('#holdPlacePuff').removeClass('hidden')}}
+	if(!turtleCount){$('#turtle0').addClass('hidden');{$('#holdPlaceTurtle').removeClass('hidden')}}	
+
+	if((!nemoCount)&&(!doryCount)&&(!stripeCount)&&
+		(!jellyCount)&&(!puffCount)&&(!turtleCount)){fCounter = 0;
+		clearInterval(timerInterval);
+		$('#canvasDescription2').removeClass('hidden')}
+	if(32 in keysDown){fCounter++
+		$('#canvasDescription2').addClass('hidden')}
+	if(fCounter === 1){
+		for(var i = 0; i < missiles.length; i++){
+			missiles[i].x = Math.floor(Math.random()*100 + 600)}
+		$("#shark-health-bg").removeClass('hidden')
+		$('#live6').removeClass('hidden')
+		$('#live5').removeClass('hidden')
+		$('#live4').removeClass('hidden')
+		$('#live3').removeClass('hidden')	
+		$('#live2').removeClass('hidden')
+		$('#live1').removeClass('hidden')
+		level++
+		nemoCount = Math.floor(level*4 + 23)
+		doryCount = Math.floor(level*1.5 + 15)
+		stripeCount = Math.floor(level*1.5 + 15)
+		jellyCount = level + 3
+		puffCount = level + 4
+		turtleCount = level - 1
+		// monsterSpeed = level 1.5
+		console.log(level)}
+	
+	if((level===3)||(level===5)||(level===7)||(level===9)){
+		backgroundImage.src = "background3.jpg";
+		$('#fishBoxes').removeClass('hidden');
+		$('#health-bar-bg').addClass('hidden');
+		$('#bossBoss').html('EAT');
+
+		if(restartTime){
+			startGame();
+			restartTime = false;
+		}
+	}}
+
 function draw(){
 	spaceToContinue();
 	displayLevel();
@@ -716,6 +724,9 @@ function draw(){
 	changeLevel();
 	requestAnimationFrame(draw);}
 draw();
+
+
+
 
 
 

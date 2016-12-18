@@ -66,7 +66,7 @@ canvas {
 .level10{
 	height: 120px;
 	line-height: 120px;
-	font-size: 30px
+	font-size: 27px
 }
 
 .e-key{
@@ -197,7 +197,7 @@ canvas {
 	height: 55px;
 	line-height: 59px; padding-left: -5px;
 	
-	font-size: 50px;
+	font-size: 44px;
 	width: 100%;
 
 }
@@ -277,6 +277,7 @@ canvas {
 #canvasDescription1{
 	text-align: center;
 	background-color: #9575cd;
+	opacity: 0.9;
 	width: 500px;
 	height: 310px;
 	border: 5px solid #1C2A48;
@@ -297,6 +298,7 @@ canvas {
 	text-align: center;
 	background-color: #ef5350 ;
 	width: 500px;
+	opacity: 0.8;
 	height: 330px;
 	border: 5px solid #1C2A48;
 	border-radius: 45%;
