@@ -19,11 +19,7 @@
 	<style>@import 'https://fonts.googleapis.com/css?family=Bubblegum+Sans';</style>				
 </head>
 
-
-
-
 <body class="bgcolor">
-
 
 <!-- Eating Nemo title -->
 <div class="col-sm-12 header">
@@ -33,9 +29,6 @@
 	<img src='shark-left.png'>
 </div>
 
-
-
-
 <!-- canvas floated left -->
 <div class="game-canvas">
 	<div id="score"></div>
@@ -43,48 +36,35 @@
 	<div id="displayLevel">LEVEL 1</div>
 </div>
 
-
-
 <!-- description blue box -->
 <div class="description text-center visible-lg"> 
-	<div class="col-lg-7">
-		<div class="col-lg-4 e-key"></div>
-		<div class="col-lg-8 key-description">TO EAT</div>
-		<div class="col-lg-4 f-key"></div>	
-		<div class="col-lg-8 key-description2">TO FIRE<br>
+	<div class="col-sm-7">
+		<div class="col-sm-4 e-key"></div>
+		<div class="col-sm-8 key-description">TO EAT</div>
+		<div class="col-sm-4 f-key"></div>	
+		<div class="col-sm-8 key-description2">TO FIRE<br>
 		<span class="boss-font">(boss level)</span></div>
-
 	</div>
-	<div class="col-lg-5 arrow-keys"></div>
-
-	<div class="col-lg-12 game-description">
-	</div>
-
-	<div class="col-lg-12 level10">
-		FINAL BOSS AT LEVEL 10
-	</div>
-
+	<div class="col-sm-5 arrow-keys"></div>
+	<div class="col-sm-12 game-description"></div>
+	<div class="col-sm-12 level10">FINAL BOSS AT LEVEL 10</div>
 </div>	
-
-
 
 <!-- input/start button -->
 <div class="right-bottom"  id="hideWhenGameStarts">
 	<div id="newPlayerDiv">
-		<input id="player-name" type="text" placeholder="Name Your Shark!">
+		<!-- <input id="player-name" type="text" placeholder="Name Your Shark!"> -->
+		<img src="shark-gun.png">
 		<button class="btn-primary" onClick = "startGame(), newPlayer()">Start Game!</button>
 	</div>	
-	<div class="name-shark">Name Your Shark or <span class="color-e">Just Press Start! ^</span></div>
+	<!-- <div class="name-shark">Name Your Shark or 
+	<span class="color-e">Just Press Start! ^</span></div> -->
 </div>
-
-
 
 <!-- timer comes on when press start -->
-<div class="hidden" id="timer">
-	EAT THEM ALL IN<br> 
+<div class="hidden" id="timer">EAT THEM ALL IN<br>
 	<span class='mono'>30</span> SECONDS!
 </div>
-<div>
 <div id="shark-health-bg" class="hidden">
 	<div class="sharkHealthPic" id="live6"></div>
 	<div class="sharkHealthPic" id="live5"></div>
@@ -96,7 +76,7 @@
 
 
 <!-- bottom blue box -->
-<div class="fishCount">
+<div class="fishCount visible-lg">
 	<div id="bossBoss" class="col-lg-1 catch">EAT</div>
  
 	<!-- hidden health bar -->
