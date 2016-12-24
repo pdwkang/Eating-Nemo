@@ -24,11 +24,12 @@ function startGame(){     //change time for boss level
 	document.getElementById('canvasDescription1').className -= "hidden"
 }
 //canvas
+
 var canvas = document.createElement("canvas");
 var context = canvas.getContext('2d')
 canvas.width = 700;		      
 canvas.height = 480;
-document.getElementsByClassName('canvasClass')[0].appendChild(canvas);	
+$(document).ready(function(){document.getElementsByClassName('canvasClass')[0].appendChild(canvas)});	
 var backgroundImage = new Image();
 backgroundImage.src = "background.png";
 
