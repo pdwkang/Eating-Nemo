@@ -29,7 +29,7 @@ var canvas = document.createElement("canvas");
 var context = canvas.getContext('2d')
 canvas.width = 700;		      
 canvas.height = 480;
-$(document).ready(function(){document.getElementsByClassName('canvasClass')[0].appendChild(canvas)});	
+document.getElementsByClassName('canvasClass')[0].appendChild(canvas);	
 var backgroundImage = new Image();
 backgroundImage.src = "background.png";
 
@@ -751,8 +751,6 @@ function draw(){
 	changeLevel();
 	requestAnimationFrame(draw);}
 draw();
-
-
 
 
 
