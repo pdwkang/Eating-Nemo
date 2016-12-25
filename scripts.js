@@ -23,8 +23,10 @@ function startGame(){     //change time for boss level
 	startGameCounter = 0
 	document.getElementById('canvasDescription1').className -= "hidden"
 }
-//canvas
 
+//////////////////////
+////////canvas////////
+//////////////////////
 var canvas = document.createElement("canvas");
 var context = canvas.getContext('2d')
 canvas.width = 700;		      
@@ -104,7 +106,6 @@ function getScore(){
 	}
 }	
 
-// ${playerName}
 
 //save keys into an array
 var keysDown = [];
@@ -118,12 +119,6 @@ var stripeCount = 15
 var jellyCount = 5
 var puffCount = 5
 var turtleCount = 1
-// var nemoCount = 1
-// var doryCount = 0
-// var stripeCount = 0
-// var jellyCount = 0
-// var puffCount = 0
-// var turtleCount = 0
 function countFish(){
 	if(gameOn){
 		document.getElementById('nemoCount').innerHTML = nemoCount
@@ -330,7 +325,7 @@ function moveMonster(){//before boss level
 			if(monsters[10].x <=1){starfishDirectionX = +2};
 	};
 	if(monsters[11].relocate){
-		monsters[11].x = Math.floor(Math.random()*310) + 400;
+		monsters[11].x = Math.floor(Math.random()*700);
 		monsters[11].y = Math.floor(Math.random()*200) + 280;
 		monsters[11].collision = false;
 		monsters[11].relocate = false;
