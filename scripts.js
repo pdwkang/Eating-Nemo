@@ -672,7 +672,7 @@ function runBossLevel(){
 	bulletCollideBoss();
 	$(document).ready(function(){
 		$('#fishBoxes').addClass('hidden')
-		$('#health-bar-bg').removeClass('hidden')
+		$('#health-bar-bg').removeClass('hidden') 
 		$('#healthBar').removeClass('hidden')
 
 	});
