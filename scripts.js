@@ -501,12 +501,11 @@ function bulletCollideBoss(){
 			bullets[i].x = 800;
 			bullets[i].y = 520;
 			healthBarWidth = 100-(damageDoneToBoss/50)
+			document.getElementById('healthBar').style.width = healthBarWidth + '%'
 			if(healthBarWidth>=15){
-			$("#healthBar").width(healthBarWidth + '%');
-			$("#healthBar").html('5000 / ' + (5000-damageDoneToBoss))
+				document.getElementById('healthBar').innerHTML = '5000 / ' + (5000-damageDoneToBoss)
 			}else if(healthBarWidth>=0){
-				$("#healthBar").width(healthBarWidth + '%');
-				$("#healthBar").html(5000-damageDoneToBoss)
+				document.getElementById('healthBar').innerHTML = 5000-damageDoneToBoss
 			}else{healthBarWidth = 0;}
 		}
 	}}
@@ -653,7 +652,8 @@ function update(){
 	moveDeadFish();
 	if((level===2)||(level===4)||(level===6)||(level===8)||(level===10)){runBossLevel()
 	}else{moveMonster()}
-	getScore()		}
+	getScore()		
+}
 function runBossLevel(){
 	if(level===2){backgroundImage.src = "background2.jpg"}
 	hero.src = "shark-gun.png";
@@ -744,7 +744,8 @@ function draw(){
 		drawDeadFish();		
 	}
 	changeLevel();
-	requestAnimationFrame(draw);}
+	requestAnimationFrame(draw);
+}
 draw();
 
 

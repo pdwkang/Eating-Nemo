@@ -1,23 +1,17 @@
- 
- .bgcolor {   /* body class */
+.bgcolor {   /* body class */
 	background: linear-gradient(to top, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
 	padding: 10px;
  	overflow: hidden;
 }
 .universe{
 	position: relative;
-	width: 1330px;
+	width: 1295px;
 	margin: auto;
-	padding: 10px 40px;
+	padding: 5px 40px;
 }
-canvas {
-/* 	position: absolute;
-	top: 0;
-	left: 0 ; */
+canvas{
 	border: 5px solid #1C2A48;
 	border-radius: 10%;
-	/* border-bottom-left-radius: 5%; */
-	/* border-bottom-right-radius: 0%; */
 	float: left;
 	margin-left: 10px;
 	box-shadow: 3px 3px 10px 5px #000;
@@ -42,9 +36,7 @@ canvas {
 	position: absolute;
 	margin-top: 105px;
 	margin-left: 5px;
-	/* text-shadow: 2px 2px white; */
 }
-
 #displayLevel{
 	position: absolute;
 	margin-left: 580px;
@@ -57,10 +49,9 @@ canvas {
 	border-radius: 20%;
 	border: 2px solid yellow;
 }
-
 .description {
-background: linear-gradient(to right, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
-	width: 38%;
+	background: linear-gradient(to right, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+	width: 445px;
 	border: 5px solid #1C2A48;
 	border-radius: 10%;
 	float: right;
@@ -73,15 +64,12 @@ background: linear-gradient(to right, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 
 	padding: 20px;
 	height: 320px;
 }
-
 .level10{
 	height: 120px;
 	line-height: 120px;
 	font-size: 22px
 }
-
 .e-key{
-	/* border: 1px solid black; */
 	height: 80px;
 	background-image: url("eKey.png");
 	background-size: 80%;
@@ -107,25 +95,21 @@ background: linear-gradient(to right, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 
 	font-size: 13px;
 }
 .arrow-keys{
-	/* border: 1px solid black; */
 	height: 160px;
 	background-image: url("arrows.png");
 	background-size: 95%;
 	background-repeat: no-repeat;
 }
-
 .game-description{
 	border-bottom: dotted 2px black;
 	font-family: Monda;
 	font-size: 20px;
 	text-align: left;
 }
-
 .game-canvas{margin-left: 10px;}
 .color-e{color: #BF360C;}
 .color-r{color: #FFF59D;}
-.color-h{color: red;
-	text-decoration: underline;}
+.color-h{color: red; text-decoration: underline;}
 .color-w{color:white;}
 .right-bottom{
 	clear: right;
@@ -145,15 +129,13 @@ background: linear-gradient(to right, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 
 	padding-left: 10px;
 }
 #newPlayerDiv img{
-	margin-right: 30px;
-	/* border: 4px solid blue; */
-	/* border-radius: ; */
+	margin-right: 30px;	
 }
 #newPlayerDiv button{
 	width: 300px;
 	height: 100px;
 	box-shadow: 3px 3px 10px 5px #000;
-background: linear-gradient(to bottom, rgba(21,97,75,1) 0%, rgba(92,255,10,1) 100%);
+	background: linear-gradient(to bottom, rgba(21,97,75,1) 0%, rgba(92,255,10,1) 100%);
 	font-family: "Bungee Inline";
 	font-size: 30px;
 	margin-right: 20px;
@@ -171,8 +153,8 @@ background: linear-gradient(to bottom, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100
 	color: blue;
 	font-weight: 100;
 	position: absolute;
-	left: 950px;
-	top: 435px;
+	left: 870px;
+	top: 425px;
 	text-align: center;
 }
 .name-shark{
@@ -181,27 +163,23 @@ background: linear-gradient(to bottom, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100
 	font-family: "Amatic SC";
 	font-size: 40px;
 	font-weight: bold;
-	/* text-decoration: underline; */
 }
-
 .mono{
 	font-family: Monoton;
 	font-size: 55px;
 	font-weight: 100;
 	color: red;
 }
-
 .dmg-color{
 	color:  black;
 }
-
 .fishCount{
 	background: linear-gradient(to right, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
-	width: 100%;
+	width: 99%;
 	border: 5px solid #1C2A48;
 	border-radius: 5%;
 	float: left;
-	margin-top: 30px;
+	margin-top: 25px;
 	margin-left: 10px;
 	box-shadow: 3px 3px 10px 5px #000;
 	font-family: "Bungee Inline";
@@ -211,23 +189,16 @@ background: linear-gradient(to bottom, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100
 	height: 80px;
 	padding: 10px;
 }
-
 .fish-box{
-/* 	border: black 1px solid;
-	border-radius: 50%; */
 	display: inline-block;
 	margin-top: -1px;	
 	height: 55px;
 	line-height: 59px; padding-left: -5px;
-	/* margin-left: 10px; */
 	font-size: 44px;
-	/* width: 100%; */
-
 }
  .width100{
  	width: 100%;
  }
-
 .fish-pic{
 	background-repeat: no-repeat;
 	text-align: right;
@@ -244,9 +215,7 @@ background: linear-gradient(to bottom, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100
 .jellyfish-pic{background-image: url("jellyfish1.png");}
 .puff-pic{background-image: url("puffer1.png");}
 .turtle-pic{background-image: url("turtle1.png");}
-
 .catch{
-	/* text-align: center; */
 	line-height: 55px;
 	color: black;
 	font-weight: 900;
@@ -254,13 +223,11 @@ background: linear-gradient(to bottom, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100
 	font-family: "Bungee Inline";
 	text-shadow: 2px 2px yellow;
 }
-
 #health-bar-bg{
 	border: 3px solid black;
 	height: 50px;
 	background-color: red;
-	padding: 0;
-	
+	padding: 0;	
 }
 #healthBar{
 	border: 1px solid yellow;
@@ -269,7 +236,6 @@ background: linear-gradient(to bottom, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100
 	line-height: 50px;
 	padding-left: 10px;
 }
-
 #shark-health-bg{
 	position: absolute;
 	margin-top: 530px;
@@ -278,7 +244,6 @@ background: linear-gradient(to bottom, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100
 	padding: 0;
 	width: 500px;
 }
-
 .sharkHealthPic{
 	background-image: url('shark.png');
 	width: 40px;
