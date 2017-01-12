@@ -33,7 +33,7 @@ canvas.width = 700;
 canvas.height = 480;
 document.getElementsByClassName('canvasClass')[0].appendChild(canvas);	
 var backgroundImage = new Image();
-backgroundImage.src = "background.png";
+backgroundImage.src = "images/background.png";
 
 function updateTimer(){
 	var newNow = Date.now();
@@ -52,16 +52,16 @@ function displayLevel(){
 function setGameOver(){
 	if((timeDifference === 0)||(damageDoneToShark>=6)||(level===11)){
 		if(level===11){
-			hero.src = "you-win.png";
-		}else{hero.src="game-over.png"}
+			hero.src = "images/you-win.png";
+		}else{hero.src="images/game-over.png"}
 		$('#hideWhenGameStarts').removeClass('hidden');
 		$('#timer').addClass('hidden')
 		gameOn = false;
 		gameOver = false;
 		level = 1
-		backgroundImage.src="background.png"
+		backgroundImage.src="images/background.png"
 		
-		boss1.src="boss.png"
+		boss1.src="images/boss.png"
 		// heroLocation = {x: 130, y: 200}
 		score = 0
 		turtleDirectionX = 2; 	 //bounce off walls
@@ -131,14 +131,14 @@ function countFish(){
 }
 
 //hero
-var hero = new Image();  		hero.src = "game-over.png"
+var hero = new Image();  		hero.src = "images/game-over.png"
 var heroLocation = {x: 310, y: 200}
 hero.id = "heroID";	
 function moveHero(){
 	if((gameOn)&&((level!==2)||(level!==4)||(level!==6)||(level!==8))){
-		if(keysDown[39]){hero.src="shark-right.png"; 
-		}else if(keysDown[37]){hero.src="shark-left.png";
-		}else{hero.src="shark.png";
+		if(keysDown[39]){hero.src="images/shark-right.png"; 
+		}else if(keysDown[37]){hero.src="images/shark-left.png";
+		}else{hero.src="images/shark.png";
 		}
 	};
 	if((gameOn)&&((level!==2)||(level!==4)||(level!==6)||(level!==8)||(level!==10))
@@ -157,26 +157,26 @@ function drawHero(){
 }
 
 //boss
-var boss1 = new Image();			boss1.src = "boss.png";
+var boss1 = new Image();			boss1.src = "images/boss.png";
 var boss1Location = {x: 555, y: 250}
 var bossSpeed = 1
 function moveBoss(){	
 	if(level===4){bossSpeed = 2;
-		boss1.src = 'boss2.png';
-		backgroundImage.src = "background4.jpg"
-		for(var i=0; i<missiles.length; i++){missiles[i].icon.src = "missile2.png"}
+		boss1.src = 'images/boss2.png';
+		backgroundImage.src = "images/background4.jpg"
+		for(var i=0; i<missiles.length; i++){missiles[i].icon.src = "images/missile2.png"}
 	}else if(level===6){bossSpeed = 3;
-		boss1.src = 'boss.png';
-		backgroundImage.src = "background2.jpg"
-		for(var i=0; i<missiles.length; i++){missiles[i].icon.src = "missile.png"}
+		boss1.src = 'images/boss.png';
+		backgroundImage.src = "images/background2.jpg"
+		for(var i=0; i<missiles.length; i++){missiles[i].icon.src = "images/missile.png"}
 	}else if(level===8){bossSpeed = 4;
-		boss1.src = 'boss2.png';
-		backgroundImage.src = "background4.jpg"
-		for(var i=0; i<missiles.length; i++){missiles[i].icon.src = "missile2.png"}
+		boss1.src = 'images/boss2.png';
+		backgroundImage.src = "images/background4.jpg"
+		for(var i=0; i<missiles.length; i++){missiles[i].icon.src = "images/missile2.png"}
 	}else if(level===10){bossSpeed = 5;
-		boss1.src = 'boss3.png';
-		backgroundImage.src = "background4.jpg"
-		for(var i=0; i<missiles.length; i++){missiles[i].icon.src = "missile3.png"}
+		boss1.src = 'images/boss3.png';
+		backgroundImage.src = "images/background4.jpg"
+		for(var i=0; i<missiles.length; i++){missiles[i].icon.src = "images/missile3.png"}
 	}
 	boss1Location.x -= (1.5*bossX);
 	boss1Location.y -= (2*bossY*bossSpeed);
@@ -202,26 +202,26 @@ function Monster(x, y, src, type){
 	this.type = type}
 Monster.prototype.collision = false;
 	//push monsters in array
-	monsters.push(new Monster(leftSideX, bottomSideY, "dory1.png", "dory"))//0
-	monsters.push(new Monster(leftSideX, bottomSideY, "nemo1.png", "nemo"))//1
-	monsters.push(new Monster(leftSideX, bottomSideY, "dory2.png", "dory"))//2
-	monsters.push(new Monster(leftSideX, bottomSideY, "nemo2.png", "nemo"))//3
-	monsters.push(new Monster(leftSideX, bottomSideY, "dory3.png", "dory"))//4
-	monsters.push(new Monster(leftSideX, bottomSideY, "nemo3.png", "nemo"))//5
-	monsters.push(new Monster(leftSideX, bottomSideY, "nemo5.png", "nemo"))//6
-	monsters.push(new Monster(leftSideX+300, bottomSideY, "stripe1.png", "stripe"))//7
-	monsters.push(new Monster(leftSideX, bottomSideY, "puffer1.png", "puff"))//8
-	monsters.push(new Monster(leftSideX, bottomSideY, "turtle1.png", "turtle"))//9
-	monsters.push(new Monster(leftSideX, bottomSideY, "jellyfish1.png", "jelly"))//10
-	monsters.push(new Monster(leftSideX, bottomSideY, "jellyfish1.png", "jelly"))//11
-	monsters.push(new Monster(leftSideX+500, Math.floor(Math.random()*480), "stripe1.png", "stripe"))//12
-	monsters.push(new Monster(leftSideX+200, Math.floor(Math.random()*480), "stripe1.png", "stripe"))//13
-	monsters.push(new Monster(leftSideX, bottomSideY-200, "stripe1.png", "stripe"))//14
-	monsters.push(new Monster(leftSideX, bottomSideY, "nemo5.png", "nemo"))//15
-	monsters.push(new Monster(leftSideX-100, bottomSideY, "nemo5.png", "nemo"))//16
-	monsters.push(new Monster(leftSideX-200, bottomSideY, "nemo3.png", "nemo"))//17
-	monsters.push(new Monster(leftSideX, bottomSideY, "nemo3.png", "nemo"))//18
-	monsters.push(new Monster(leftSideX, bottomSideY, "puffer1.png", "puff"))//19
+	monsters.push(new Monster(leftSideX, bottomSideY, "images/dory1.png", "dory"))//0
+	monsters.push(new Monster(leftSideX, bottomSideY, "images/nemo1.png", "nemo"))//1
+	monsters.push(new Monster(leftSideX, bottomSideY, "images/dory2.png", "dory"))//2
+	monsters.push(new Monster(leftSideX, bottomSideY, "images/nemo2.png", "nemo"))//3
+	monsters.push(new Monster(leftSideX, bottomSideY, "images/dory3.png", "dory"))//4
+	monsters.push(new Monster(leftSideX, bottomSideY, "images/nemo3.png", "nemo"))//5
+	monsters.push(new Monster(leftSideX, bottomSideY, "images/nemo5.png", "nemo"))//6
+	monsters.push(new Monster(leftSideX+300, bottomSideY, "images/stripe1.png", "stripe"))//7
+	monsters.push(new Monster(leftSideX, bottomSideY, "images/puffer1.png", "puff"))//8
+	monsters.push(new Monster(leftSideX, bottomSideY, "images/turtle1.png", "turtle"))//9
+	monsters.push(new Monster(leftSideX, bottomSideY, "images/jellyfish1.png", "jelly"))//10
+	monsters.push(new Monster(leftSideX, bottomSideY, "images/jellyfish1.png", "jelly"))//11
+	monsters.push(new Monster(leftSideX+500, Math.floor(Math.random()*480), "images/stripe1.png", "stripe"))//12
+	monsters.push(new Monster(leftSideX+200, Math.floor(Math.random()*480), "images/stripe1.png", "stripe"))//13
+	monsters.push(new Monster(leftSideX, bottomSideY-200, "images/stripe1.png", "stripe"))//14
+	monsters.push(new Monster(leftSideX, bottomSideY, "images/nemo5.png", "nemo"))//15
+	monsters.push(new Monster(leftSideX-100, bottomSideY, "images/nemo5.png", "nemo"))//16
+	monsters.push(new Monster(leftSideX-200, bottomSideY, "images/nemo3.png", "nemo"))//17
+	monsters.push(new Monster(leftSideX, bottomSideY, "images/nemo3.png", "nemo"))//18
+	monsters.push(new Monster(leftSideX, bottomSideY, "images/puffer1.png", "puff"))//19
 function moveMonster(){//before boss level
 	//cannot loop through array (each monster spawns in different part of canvas)
 	for(var i = 0; i<monsters.length; i++){
@@ -435,7 +435,7 @@ function DeadFish(x){}
 DeadFish.prototype.x = 0;
 DeadFish.prototype.y = 600;
 DeadFish.prototype.icon = new Image();
-DeadFish.prototype.icon.src = "deadfish.png"
+DeadFish.prototype.icon.src = "images/deadfish.png"
 for(var i = 0; i<monsters.length; i++){deadFishArray.push(new DeadFish())}
 function moveDeadFish(){
 	for(var i = 0; i<monsters.length; i++){
@@ -454,7 +454,7 @@ var shellSpeed =10;
 function Shell(y){this.y = y;}
 Shell.prototype.x = 300;
 Shell.prototype.icon = new Image();
-Shell.prototype.icon.src = "shell.png"
+Shell.prototype.icon.src = "images/shell.png"
 for(var i = 0; i < 13; i++){shells.push(new Shell(i*40))}
 function moveShell(){
 	for(var i =0; i<shells.length; i++){
@@ -471,7 +471,7 @@ function Bullet(x, y){
 	this.x = x;
 	this.y = y;}
 Bullet.prototype.icon = new Image();
-Bullet.prototype.icon.src = "bullet.png"
+Bullet.prototype.icon.src = "images/bullet.png"
 for(var i = 0; i < 100; i++){bullets.push(new Bullet(0, 500))}
 function moveBullet(){
 	for(var i = 0; i<100; i++){
@@ -520,10 +520,10 @@ var missileSpeedX = 1;
 function Missile(x){this.x = x;}
 Missile.prototype. y = 500
 Missile.prototype.icon = new Image();
-Missile.prototype.icon.src = "missile.png"
+Missile.prototype.icon.src = "images/missile.png"
 for(var i = 0; i < 7; i++){missiles.push(new Missile(i * 125))};
 function moveMissile(){
-	if(level===2){Missile.prototype.icon.src = "missile.png"}
+	if(level===2){Missile.prototype.icon.src = "images/missile.png"}
 	missiles[0].x -= (missileSpeedX * 1.4 + level/3)
 	missiles[1].x -= (missileSpeedX * 2.7 + level/3)
 	missiles[2].x -= (missileSpeedX * 2 + level/3)
@@ -655,8 +655,8 @@ function update(){
 	getScore()		
 }
 function runBossLevel(){
-	if(level===2){backgroundImage.src = "background2.jpg"}
-	hero.src = "shark-gun.png";
+	if(level===2){backgroundImage.src = "images/background2.jpg"}
+	hero.src = "images/shark-gun.png";
 	$('#bossBoss').html('BOSS')
 	fireBullet();
 	fireBullet2();
@@ -713,7 +713,7 @@ function changeLevel(){
 		console.log(level)}
 	
 	if((level===3)||(level===5)||(level===7)||(level===9)){
-		backgroundImage.src = "background3.jpg";
+		backgroundImage.src = "images/background3.jpg";
 		$('#fishBoxes').removeClass('hidden');
 		$('#health-bar-bg').addClass('hidden');
 		$('#bossBoss').html('EAT');
@@ -747,7 +747,4 @@ function draw(){
 	requestAnimationFrame(draw);
 }
 draw();
-
-
-
 

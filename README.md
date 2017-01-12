@@ -1,23 +1,23 @@
-##Eating Nemo(README in progress)
+##Eating Nemo
 
 ####[Play The Game!](http://pauldkang.com/nemo/)
 ---
 
 Eating Nemo is a single player game developed in plain javascript.
 
-![alt text](./screenshot-game.png)
+![alt text](./images/screenshot-game.png)
 
 Descriptions for game modes are shown before starting each level
 
-![alt text](./screenshot-level1.png) ![alt text](./screenshot-level2.png)
+![alt text](./images/screenshot-level1.png) ![alt text](./images/screenshot-level2.png)
 
 The user controls the shark's movements with arrow keys. In regular mode, player must eat all the fish within 30 seconds. Remaining fish are listed below the game-screen, while the timer ticks on the right.
 
-![alt text](./screenshot-gameplay.png)
+![alt text](./images/screenshot-gameplay.png)
 
 In boss mode, player must shoot down the enemy while dodging its attacks. Player is given 6 shark lives at the start of each level, and higher level bosses have more hp and projectiles.
 
-![alt text](./screenshot-bosslevel.png)
+![alt text](./images/screenshot-bosslevel.png)
 ---
 ##Code Example: Bullet creation, firing, and collision in Vanilla JS
 
@@ -139,3 +139,25 @@ var bulletsArray = [bullet1Location, bullet2Location, bullet3Location, bullet4Lo
     bullet14Location, bullet15Location, bullet16Location, bullet17Location, bullet18Location, bullet19Location, bullet20Location, bullet21Location, bullet22Location, bullet23Location, bullet24Location, bullet25Location, bullet26Location, bullet27Location
 ```
 Another challenge I had was keeping track of all the functions being called within each other. As I was breaking down long functions into smaller ones, it was becoming harder to remember which function did what. I've resolved this problem by both commenting on my codes more often and coding longer hours in per sitting.
+
+```javascript
+function moveShell(){
+  for(var i =0; i<shells.length; i++){
+    shells[i].y += shellSpeed
+  }
+};
+
+function runBossLevel(){
+  moveShell();
+};
+
+function update(){
+  runBossLevel()
+};
+
+function draw(){
+  update();
+};
+
+draw();
+```
