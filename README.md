@@ -1,9 +1,9 @@
-###Eating Nemo(README in progress)
+##Eating Nemo(README in progress)
 
 ####[Play The Game!](http://pauldkang.com/nemo/)
 ---
 
-Eating Nemo is a single player game developed in plain JavasSript using the draw method to render the ```<canvas>``` element. 
+Eating Nemo is a single player game developed in plain javascript.
 
 ![alt text](./screenshot-game.png)
 
@@ -18,10 +18,10 @@ The user controls the shark's movements with arrow keys. In regular mode, player
 In boss mode, player must shoot down the enemy while dodging its attacks. Player is given 6 shark lives at the start of each level, and higher level bosses have more hp and projectiles.
 
 ![alt text](./screenshot-bosslevel.png)
+---
+##Code Example: Bullet creation, firing, and collision in Vanilla JS
 
-####Code Example: Bullet creation, firing, and collision in Vanilla JS
-
-Creating 100 bullet objects with a constructor and pushing them into an array
+Creating bullet objects with a constructor and pushing them into an array
 ```javascript
 var bullets = [];
 
@@ -132,3 +132,10 @@ function draw(){
 draw();
 ```
 
+###Challenges
+The biggest struggles were trying to code and keep up with all the ideas that were coming up as the game was being developed. Without being fully comfortable with javascript, I wrote a lot of code in a brute force manner and focused more on the functionality. For example, I originally typed out 100 variables each assigned to a bullet object and manually added their locations to an array.
+```javascript 
+var bulletsArray = [bullet1Location, bullet2Location, bullet3Location, bullet4Location, bullet5Location, bullet6Location, bullet7Location, bullet8Location, bullet9Location, bullet10Location, bullet11Location, bullet12Location, bullet13Location, 
+    bullet14Location, bullet15Location, bullet16Location, bullet17Location, bullet18Location, bullet19Location, bullet20Location, bullet21Location, bullet22Location, bullet23Location, bullet24Location, bullet25Location, bullet26Location, bullet27Location
+```
+Another challenge I had was keeping track of all the functions being called within each other. As I was breaking down long functions into smaller ones, it was becoming harder to remember which function did what. I've resolved this problem by both commenting on my codes more often and coding longer hours in per sitting.
