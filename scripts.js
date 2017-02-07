@@ -1,4 +1,6 @@
-//global variables
+////////////////////////////////
+////////GLOBAL VARIABLES////////
+////////////////////////////////
 var level = 1
 var score = 0
 var highScore = 0;
@@ -19,7 +21,8 @@ var pressF = true
 var restartTime = false;
 var startGameCounter = 15
 
-function startGame(){     //change time for boss level
+function startGame(){     
+	//change time for boss level
 	startGameCounter = 0
 	document.getElementById('canvasDescription1').className -= "hidden"
 }
@@ -35,25 +38,32 @@ document.getElementsByClassName('canvasClass')[0].appendChild(canvas);
 var backgroundImage = new Image();
 backgroundImage.src = "images/background.png";
 
+////////////////////////////////
+//////GAME START FUNCTIONS//////
+////////////////////////////////
 function updateTimer(){
 	var newNow = Date.now();
 	timeDifference = (gameEnd - newNow) / 1000;
-	if(timeDifference <= 0){clearInterval(timerInterval);
+	if(timeDifference <= 0){
+		clearInterval(timerInterval);
 		timeDifference = 0;
-		// $('#timer').html('GAME OVER')
 	}else{
-	document.getElementById('timer').innerHTML = 
-	`EAT THEM ALL IN<br> <span class='mono'>${Math.round(timeDifference)}</span> SECONDS!`
+		document.getElementById('timer').innerHTML = 
+			`EAT THEM ALL IN<br> <span class='mono'>${Math.round(timeDifference)}</span> SECONDS!`
 	};
 }
 function displayLevel(){
 	$('#displayLevel').html('LEVEL '+level)
 }
 function setGameOver(){
+	// If timer goes to 0 or shark gets hit by boss attacks 6 times, or level 10 is beaten
 	if((timeDifference === 0)||(damageDoneToShark>=6)||(level===11)){
 		if(level===11){
 			hero.src = "images/you-win.png";
-		}else{hero.src="images/game-over.png"}
+		}else{
+			hero.src="images/game-over.png"
+		};
+
 		$('#hideWhenGameStarts').removeClass('hidden');
 		$('#timer').addClass('hidden')
 		gameOn = false;
@@ -85,6 +95,9 @@ function setGameOver(){
 	}
 }
 
+////////////////////////////
+//////PLAYER FUNCTIONS//////
+////////////////////////////
 function newPlayer(){
 	playerNameDiv = document.getElementById("player-name");
 	playerName = playerNameDiv.value;
@@ -95,24 +108,29 @@ function Player(name){   //player constructor
 	this.highscore = 0;
 }
 function getScore(){
-	if(score>highScore){highScore=score
+	if(score > highScore){
+		highScore = score
 	}
 	document.getElementById('score').innerHTML =
-	 `&nbsp &nbsp &nbsp &nbsp SCORE: <span class='color-3'>${score}</span>    
-	 &nbsp &nbsp &nbsp &nbsp HIGH SCORE: 
-	 <span class='color-h'>${highScore}</span> `;
+	 	`&nbsp &nbsp &nbsp &nbsp SCORE: <span class='color-3'>${score}</span>    
+	 	&nbsp &nbsp &nbsp &nbsp HIGH SCORE: 
+	 	<span class='color-h'>${highScore}</span> `;
 	if((level===2)||(level===4)||(level===6)||(level===8)||(level===10)){document.getElementById('timer').innerHTML =
-	`${playerName} !! KILL THE BOSS !!`
+		`${playerName} !! KILL THE BOSS !!`
 	}
 }	
 
 
-//save keys into an array
+//////////////////////////
+//////KEYS FUNCTIONS//////
+//////////////////////////
 var keysDown = [];
 addEventListener('keydown', function(event){keysDown[event.keyCode] = true;});
 addEventListener('keyup', function(event){delete keysDown[event.keyCode];});
 
-//fishCounter
+////////////////////////////
+//////LVL1 FISH COUNTS//////
+////////////////////////////
 var nemoCount = 30
 var doryCount = 20
 var stripeCount = 15
@@ -130,7 +148,9 @@ function countFish(){
 	}
 }
 
-//hero
+////////////////
+//////HERO//////
+////////////////
 var hero = new Image();  		hero.src = "images/game-over.png"
 var heroLocation = {x: 310, y: 200}
 hero.id = "heroID";	
@@ -156,7 +176,9 @@ function drawHero(){
 	};
 }
 
-//boss
+////////////////
+//////BOSS//////
+////////////////
 var boss1 = new Image();			boss1.src = "images/boss.png";
 var boss1Location = {x: 555, y: 250}
 var bossSpeed = 1
@@ -189,7 +211,9 @@ function drawBoss(){
 	context.drawImage(boss1, boss1Location.x, boss1Location.y);
 }
 
-//monsters
+////////////////////////
+//////ALL MONSTERS//////
+////////////////////////
 var monsters = [];
 var leftSideX = Math.random(Math.floor()*150)
 var bottomSideY = Math.random(Math.floor()*100 + 380)
@@ -201,7 +225,7 @@ function Monster(x, y, src, type){
 	this.icon.src = src;
 	this.type = type}
 Monster.prototype.collision = false;
-	//push monsters in array
+	//Push monsters into array
 	monsters.push(new Monster(leftSideX, bottomSideY, "images/dory1.png", "dory"))//0
 	monsters.push(new Monster(leftSideX, bottomSideY, "images/nemo1.png", "nemo"))//1
 	monsters.push(new Monster(leftSideX, bottomSideY, "images/dory2.png", "dory"))//2
@@ -222,25 +246,32 @@ Monster.prototype.collision = false;
 	monsters.push(new Monster(leftSideX-200, bottomSideY, "images/nemo3.png", "nemo"))//17
 	monsters.push(new Monster(leftSideX, bottomSideY, "images/nemo3.png", "nemo"))//18
 	monsters.push(new Monster(leftSideX, bottomSideY, "images/puffer1.png", "puff"))//19
-function moveMonster(){//before boss level
-	//cannot loop through array (each monster spawns in different part of canvas)
+function moveMonster(){
+	//Before boss level
+	//Cannot loop through array (each monster spawns in different part of canvas)
 	for(var i = 0; i<monsters.length; i++){
 		if(gameOn){
+
+		//On contact with monster while pressing 'E'
 		if((69 in keysDown)&&(heroLocation.x <= monsters[i].x + 45) 
 		&& (heroLocation.y <= monsters[i].y + 45)
 		&& (monsters[i].x <= heroLocation.x + 45)
 		&& (monsters[i].y <= heroLocation.y + 45)){
+			score += 100
+			//Spawn dead fish on the spot of contact
 			deadFishArray[i].x = monsters[i].x;
 			deadFishArray[i].y = monsters[i].y;
 			monsters[i].collision = true;
+
+			//Reduce fish count when fish are eaten
 			if((monsters[i].type === "nemo")&&(nemoCount>0)){nemoCount--};
 			if((monsters[i].type === "dory")&&(doryCount>0)){doryCount--};
 			if((monsters[i].type === "stripe")&&(stripeCount>0)){stripeCount--};
 			if((monsters[i].type === "turtle")&&(turtleCount>0)){turtleCount--};
 			if((monsters[i].type === "puff")&&(puffCount>0)){puffCount--};
 			if((monsters[i].type === "jelly")&&(jellyCount>0)){jellyCount--};
-			score += 100}
 			}
+		}
 		if((monsters[i].collision)||(monsters[i].x>=700)||(monsters[i].x<=0)
 			||(monsters[i].y>=480)||(monsters[i].y<=0)){
 			monsters[i].relocate = true;}
@@ -381,6 +412,7 @@ function moveMonster(){//before boss level
 	};
 }
 function updateMonsterSpeed(){
+	//each fish has its own speed
 	monsters[0].x += .5*monsterSpeed;	monsters[0].y -= .3*monsterSpeed;
 	monsters[1].x += 1.8*monsterSpeed;	monsters[1].y -= .6*monsterSpeed;
 	monsters[2].x += monsterSpeed;		monsters[2].y -= monsterSpeed;
@@ -428,7 +460,10 @@ function drawMonster(){
 	}
 }
 
-//deadfish
+
+/////////////////////
+//////DEAD FISH//////
+/////////////////////
 var deadFishArray = [];
 var deadFishSpeed = 3
 function DeadFish(x){}
@@ -445,10 +480,11 @@ function moveDeadFish(){
 function drawDeadFish(){
 
 }
-	// for(var i = 0; i<monsters.length; i++){
-	// 	context.drawImage(deadFishArray[i].icon, deadFishArray[i].x, deadFishArray[i].y)}}
 
-//shells
+
+//////////////////
+//////SHELLS//////
+//////////////////
 var shells = [];
 var shellSpeed =10;
 function Shell(y){this.y = y;}
@@ -464,7 +500,9 @@ function drawShell(){
 	for(var i = 0; i<shells.length; i++){
 		context.drawImage(shells[i].icon, shells[i].x, shells[i].y)}}
 
-//bullets
+//////////////////
+//////BULLETS/////
+//////////////////
 var bullets = [];
 var bulletSpeed = 15;
 function Bullet(x, y){
@@ -514,7 +552,9 @@ function drawBullets(){
 		context.drawImage(bullets[i].icon, bullets[i].x, bullets[i].y)
 	}}
 
-//missiles
+////////////////////
+//////MISSILES//////
+////////////////////
 var missiles = [];
 var missileSpeedX = 1;
 function Missile(x){this.x = x;}
@@ -577,21 +617,44 @@ function collideMissile(){
 		}
 	}}
 
+
+function drawMissile(){
+	for(var i = 0; i < missiles.length; i++){
+		if(level < 5){
+			if(i < 4){
+				context.drawImage(missiles[i].icon, missiles[i].x, missiles[i].y)
+			}
+		}else{
+			context.drawImage(missiles[i].icon, missiles[i].x, missiles[i].y)
+		}
+	}	
+}
+var missileCounter = 0
+function fireMissile(){
+	if(missileCounter >= missiles.length){missileCounter = 0;};
+	missiles[missileCounter].x = boss1Location.x;
+	missiles[missileCounter].y = boss1Location.y;
+	missileCounter++;}
+
+
+//////////////////////////////////
+//////WHEN BOSS HP GOES to 0//////
+//////////////////////////////////
 function bossDead(){
 	if(damageDoneToBoss>=5000){
 		level++;
-	{$('#holdPlaceNemo').addClass('hidden')}
-	{$('#holdPlaceDory').addClass('hidden')}
-	{$('#holdPlaceStripe').addClass('hidden')}
-	{$('#holdPlaceJelly').addClass('hidden')}		
-	{$('#holdPlacePuff').addClass('hidden')}
-	{$('#holdPlaceTurtle').addClass('hidden')}
-	{$('#nemo0').removeClass('hidden')}
-	{$('#dory0').removeClass('hidden')}
-	{$('#stripe0').removeClass('hidden')}
-	{$('#jellyfish0').removeClass('hidden')}		
-	{$('#puff0').removeClass('hidden')}
-	{$('#turtle0').removeClass('hidden')}
+	$('#holdPlaceNemo').addClass('hidden')
+	$('#holdPlaceDory').addClass('hidden')
+	$('#holdPlaceStripe').addClass('hidden')
+	$('#holdPlaceJelly').addClass('hidden')		
+	$('#holdPlacePuff').addClass('hidden')
+	$('#holdPlaceTurtle').addClass('hidden')
+	$('#nemo0').removeClass('hidden')
+	$('#dory0').removeClass('hidden')
+	$('#stripe0').removeClass('hidden')
+	$('#jellyfish0').removeClass('hidden')		
+	$('#puff0').removeClass('hidden')
+	$('#turtle0').removeClass('hidden')
 		timeDifference = 30;
 		damageDoneToBoss=0;
 		restartTime = true;
@@ -602,50 +665,44 @@ function bossDead(){
 	}
 }
 
-function drawMissile(){
-	for(var i = 0; i < missiles.length; i++){
-		if(level<5){
-			if(i<4){context.drawImage(missiles[i].icon, missiles[i].x, missiles[i].y)}
-			}else{context.drawImage(missiles[i].icon, missiles[i].x, missiles[i].y)
-		}
-	}	
-}
-var missileCounter = 0
-function fireMissile(){
-	if(missileCounter>=missiles.length){missileCounter=0;};
-	missiles[missileCounter].x = boss1Location.x;
-	missiles[missileCounter].y = boss1Location.y;
-	missileCounter++;}
-
+/////////////////////////////
+//////START NEXT LEVEL //////
+/////////////////////////////
 function spaceToContinue(){
 	if(32 in keysDown){startGameCounter++};
 	if(startGameCounter === 1){
-	$('#canvasDescription1').addClass('hidden')
-	gameOn = true;
-	gameStart = Date.now();
-	gameEnd = Date.now() + 30000;
-	timerInterval = setInterval(updateTimer, 1000);
-	$('#hideWhenGameStarts').addClass('hidden');
-	$('#timer').removeClass('hidden')
-	heroLocation = {x: 310, y:200}
-	damageDoneToShark = 0;
-	$('#bossBoss').html('EAT')
-	$('#fishBoxes').removeClass('hidden')
-	$('#health-bar-bg').addClass('hidden')
-	$('#shark-health-bg').addClass('hidden')
-	$('#holdPlaceNemo').addClass('hidden')
-	$('#holdPlaceDory').addClass('hidden')
-	$('#holdPlaceStripe').addClass('hidden')
-	$('#holdPlaceJelly').addClass('hidden')
-	$('#holdPlacePuff').addClass('hidden')
-	$('#holdPlaceTurtle').addClass('hidden')
-	$('#nemo0').removeClass('hidden')
-	$('#dory0').removeClass('hidden')
-	$('#stripe0').removeClass('hidden')
-	$('#jellyfish0').removeClass('hidden')	
-	$('#puff0').removeClass('hidden')
-	$('#turtle0').removeClass('hidden')}}
-//draw and update
+		$('#canvasDescription1').addClass('hidden')
+		gameOn = true;
+		gameStart = Date.now();
+		gameEnd = Date.now() + 30000;
+		timerInterval = setInterval(updateTimer, 1000);
+		$('#hideWhenGameStarts').addClass('hidden');
+		$('#timer').removeClass('hidden')
+		heroLocation = {x: 310, y:200}
+		damageDoneToShark = 0;
+		$('#bossBoss').html('EAT')
+		$('#fishBoxes').removeClass('hidden')
+		$('#health-bar-bg').addClass('hidden')
+		$('#shark-health-bg').addClass('hidden')
+		$('#holdPlaceNemo').addClass('hidden')
+		$('#holdPlaceDory').addClass('hidden')
+		$('#holdPlaceStripe').addClass('hidden')
+		$('#holdPlaceJelly').addClass('hidden')
+		$('#holdPlacePuff').addClass('hidden')
+		$('#holdPlaceTurtle').addClass('hidden')
+		$('#nemo0').removeClass('hidden')
+		$('#dory0').removeClass('hidden')
+		$('#stripe0').removeClass('hidden')
+		$('#jellyfish0').removeClass('hidden')	
+		$('#puff0').removeClass('hidden')
+		$('#turtle0').removeClass('hidden')
+	}
+}
+
+
+//////////////////////////////////////////////////////////////////
+///////////////////////////CANVAS DRAW////////////////////////////
+//////////////////////////////////////////////////////////////////
 function update(){
 	countFish()
 	moveHero();
@@ -654,6 +711,8 @@ function update(){
 	}else{moveMonster()}
 	getScore()		
 }
+
+
 function runBossLevel(){
 	if(level===2){backgroundImage.src = "images/background2.jpg"}
 	hero.src = "images/shark-gun.png";
@@ -677,6 +736,11 @@ function runBossLevel(){
 
 	});
 }
+
+
+///////////////////////
+/////CHANGE LEVEL//////
+///////////////////////
 var fCounter = 5
 function changeLevel(){
 	if(!nemoCount){$('#nemo0').addClass('hidden');{$('#holdPlaceNemo').removeClass('hidden')}}
@@ -722,7 +786,8 @@ function changeLevel(){
 			startGame();
 			restartTime = false;
 		}
-	}}
+	}
+}
 
 function draw(){
 	spaceToContinue();

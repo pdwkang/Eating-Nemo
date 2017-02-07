@@ -132,7 +132,8 @@ function draw(){
 draw();
 ```
 
-###Challenges
+
+##Challenges
 The biggest struggles were trying to code and keep up with all the ideas that were coming up as the game was being developed. Without being fully comfortable with javascript, I wrote a lot of code in a brute force manner and focused more on the functionality. For example, I originally typed out 100 variables each assigned to a bullet object and manually added their locations to an array.
 ```javascript 
 var bulletsArray = [bullet1Location, bullet2Location, bullet3Location, bullet4Location, bullet5Location, bullet6Location, bullet7Location, bullet8Location, bullet9Location, bullet10Location, bullet11Location, bullet12Location, bullet13Location, 
