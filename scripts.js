@@ -1,6 +1,6 @@
-////////////////////////////////
-////////GLOBAL VARIABLES////////
-////////////////////////////////
+//------------------------------//
+//------ GLOBAL VARIABLES ------//
+//------------------------------//
 var level = 1
 var score = 0
 var highScore = 0;
@@ -27,9 +27,9 @@ function startGame(){
 	document.getElementById('canvasDescription1').className -= "hidden"
 }
 
-//////////////////////
-////////canvas////////
-//////////////////////
+//------------------------------//
+//----------- Canvas -----------//
+//------------------------------//
 var canvas = document.createElement("canvas");
 var context = canvas.getContext('2d')
 canvas.width = 700;		      
@@ -38,9 +38,9 @@ document.getElementsByClassName('canvasClass')[0].appendChild(canvas);
 var backgroundImage = new Image();
 backgroundImage.src = "images/background.png";
 
-////////////////////////////////
-//////GAME START FUNCTIONS//////
-////////////////////////////////
+//------------------------------//
+//---- Game Start Functions ----//
+//------------------------------//
 function updateTimer(){
 	var newNow = Date.now();
 	timeDifference = (gameEnd - newNow) / 1000;
@@ -95,9 +95,9 @@ function setGameOver(){
 	}
 }
 
-////////////////////////////
-//////PLAYER FUNCTIONS//////
-////////////////////////////
+//------------------------------//
+//----- Create New Player ------//
+//------------------------------//
 function newPlayer(){
 	playerNameDiv = document.getElementById("player-name");
 	playerName = playerNameDiv.value;
@@ -121,16 +121,16 @@ function getScore(){
 }	
 
 
-//////////////////////////
-//////KEYS FUNCTIONS//////
-//////////////////////////
+//-----------------------------//
+//---- Keys Down Functions ----//
+//-----------------------------//
 var keysDown = [];
 addEventListener('keydown', function(event){keysDown[event.keyCode] = true;});
 addEventListener('keyup', function(event){delete keysDown[event.keyCode];});
 
-////////////////////////////
-//////LVL1 FISH COUNTS//////
-////////////////////////////
+//------------------------------//
+//----- Level 1 fish count -----//
+//------------------------------//
 var nemoCount = 30
 var doryCount = 20
 var stripeCount = 15
@@ -148,9 +148,9 @@ function countFish(){
 	}
 }
 
-////////////////
-//////HERO//////
-////////////////
+//-----------------------------//
+//------------ Hero -----------//
+//-----------------------------//
 var hero = new Image();  		hero.src = "images/game-over.png"
 var heroLocation = {x: 310, y: 200}
 hero.id = "heroID";	
@@ -176,9 +176,9 @@ function drawHero(){
 	};
 }
 
-////////////////
-//////BOSS//////
-////////////////
+//-----------------------------//
+//------------ Boss -----------//
+//-----------------------------//
 var boss1 = new Image();			boss1.src = "images/boss.png";
 var boss1Location = {x: 555, y: 250}
 var bossSpeed = 1
@@ -211,9 +211,9 @@ function drawBoss(){
 	context.drawImage(boss1, boss1Location.x, boss1Location.y);
 }
 
-////////////////////////
-//////ALL MONSTERS//////
-////////////////////////
+//------------------------------//
+//-------- All Monsters --------//
+//------------------------------//
 var monsters = [];
 var leftSideX = Math.random(Math.floor()*150)
 var bottomSideY = Math.random(Math.floor()*100 + 380)
@@ -461,9 +461,10 @@ function drawMonster(){
 }
 
 
-/////////////////////
-//////DEAD FISH//////
-/////////////////////
+//----------------------------//
+//--------- Dead Fish --------//
+//----------------------------//
+// Spawns when shark eats fish and moves down to y = max on campus
 var deadFishArray = [];
 var deadFishSpeed = 3
 function DeadFish(x){}
@@ -482,9 +483,11 @@ function drawDeadFish(){
 }
 
 
-//////////////////
-//////SHELLS//////
-//////////////////
+//-----------------------------//
+//----------- Shells ----------//
+//-----------------------------//
+// Constantly moving shells form a wall that shark cannot cross
+// during boss levels, where shark shoots bullets from left of shell wall
 var shells = [];
 var shellSpeed =10;
 function Shell(y){this.y = y;}
@@ -500,9 +503,9 @@ function drawShell(){
 	for(var i = 0; i<shells.length; i++){
 		context.drawImage(shells[i].icon, shells[i].x, shells[i].y)}}
 
-//////////////////
-//////BULLETS/////
-//////////////////
+//-----------------------------//
+//---------- Bullets ----------//
+//-----------------------------//
 var bullets = [];
 var bulletSpeed = 15;
 function Bullet(x, y){
@@ -552,9 +555,9 @@ function drawBullets(){
 		context.drawImage(bullets[i].icon, bullets[i].x, bullets[i].y)
 	}}
 
-////////////////////
-//////MISSILES//////
-////////////////////
+//-----------------------------//
+//---------- Missiles ---------//
+//-----------------------------//
 var missiles = [];
 var missileSpeedX = 1;
 function Missile(x){this.x = x;}
@@ -637,9 +640,9 @@ function fireMissile(){
 	missileCounter++;}
 
 
-//////////////////////////////////
-//////WHEN BOSS HP GOES to 0//////
-//////////////////////////////////
+//-----------------------------//
+//------- Boss is dead --------//
+//-----------------------------//
 function bossDead(){
 	if(damageDoneToBoss>=5000){
 		level++;
@@ -665,9 +668,9 @@ function bossDead(){
 	}
 }
 
-/////////////////////////////
-//////START NEXT LEVEL //////
-/////////////////////////////
+//-----------------------------//
+//------ Start next level -----//
+//-----------------------------//
 function spaceToContinue(){
 	if(32 in keysDown){startGameCounter++};
 	if(startGameCounter === 1){
@@ -700,9 +703,9 @@ function spaceToContinue(){
 }
 
 
-//////////////////////////////////////////////////////////////////
-///////////////////////////CANVAS DRAW////////////////////////////
-//////////////////////////////////////////////////////////////////
+//----------------------------//
+//--- Canvas Draw function ---//
+//----------------------------//
 function update(){
 	countFish()
 	moveHero();
@@ -738,9 +741,9 @@ function runBossLevel(){
 }
 
 
-///////////////////////
-/////CHANGE LEVEL//////
-///////////////////////
+//-----------------------------//
+//------ On level change ------//
+//-----------------------------//
 var fCounter = 5
 function changeLevel(){
 	if(!nemoCount){$('#nemo0').addClass('hidden');{$('#holdPlaceNemo').removeClass('hidden')}}
